@@ -1,3 +1,10 @@
+/*************************************************************
+ *  Projet de session TCH057
+ *  Agence de voyage
+ *  Groupe 9
+ *  Auteurs : Aurèle Collin, Matisse Ruel, Nicolas Berlinguet
+ *
+ *************************************************************/
 package com.caurele.projetsession;
 
 import android.os.Bundle;

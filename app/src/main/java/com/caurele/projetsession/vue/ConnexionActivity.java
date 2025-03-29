@@ -20,6 +20,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.caurele.projetsession.R;
+import com.caurele.projetsession.model.UtilitaireJSON;
 
 public class ConnexionActivity extends AppCompatActivity {
 
@@ -53,8 +54,18 @@ public class ConnexionActivity extends AppCompatActivity {
         btnConnect.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                String courriel = String.valueOf(eTxtCourriel.getText());
-                String motPasse = String.valueOf(eTxtMotPasse.getText());
+                UtilitaireJSON utilJson = new UtilitaireJSON();
+
+                (new Thread(){
+                    @Override
+                    public void run(){
+                        String test = utilJson.getVoyages();
+                    }
+                }).start();
+
+
+                // String courriel = String.valueOf(eTxtCourriel.getText());
+                // String motPasse = String.valueOf(eTxtMotPasse.getText());
 
                 // Authentifier(courriel, motPasse); TODO
             }

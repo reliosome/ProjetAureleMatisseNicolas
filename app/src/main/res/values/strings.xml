@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ProjetSession</string>
+    <string name="mot_de_passe">Mot de passe</string>
+    <string name="adresse_courriel">Adresse courriel</string>
+    <string name="premi_re_connexion">Première connexion?</string>
+    <string name="se_connecter">Se connecter</string>
+    <string name="agence_de_voyage_et_co">Agence de voyage et co.</string>
+</resources>

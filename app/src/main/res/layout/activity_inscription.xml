@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EBEAF4"
+    tools:context=".vue.InscriptionActivity">
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="59dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnInscription"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtInfos">
+
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/empty_middle"
+            android:orientation="vertical"
+            android:showDividers="middle"
+            android:translationX="30dp">
+
+            <EditText
+                android:id="@+id/eTxtNom"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="#FFFFFF"
+                android:ems="10"
+                android:hint="@string/nom"
+                android:inputType="text"
+                android:textColorHint="#505050" />
+
+            <EditText
+                android:id="@+id/eTxtPrenom"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="#FFFFFF"
+                android:ems="10"
+                android:hint="@string/pr_nom"
+                android:inputType="text"
+                android:textColorHint="#505050" />
+
+            <EditText
+                android:id="@+id/eTxtAge"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="#FFFFFF"
+                android:ems="10"
+                android:hint="@string/ge"
+                android:inputType="number"
+                android:textColorHint="#505050" />
+
+            <EditText
+                android:id="@+id/eTxtAdresse"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="#FFFFFF"
+                android:ems="10"
+                android:hint="@string/adresse"
+                android:inputType="textPostalAddress"
+                android:textColorHint="#505050" />
+
+            <EditText
+                android:id="@+id/eTxtTelephone"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="#FFFFFF"
+                android:ems="10"
+                android:hint="@string/num_ro_de_t_l_phone"
+                android:inputType="phone"
+                android:textColorHint="#505050" />
+
+            <EditText
+                android:id="@+id/eTxtCourriel2"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="#FFFFFF"
+                android:ems="10"
+                android:hint="@string/adresse_courriel"
+                android:inputType="textEmailAddress"
+                android:textColorHint="#505050" />
+
+            <EditText
+                android:id="@+id/eTxtMotDePasse"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="#FFFFFF"
+                android:ems="10"
+                android:hint="@string/mot_de_passe"
+                android:inputType="textPassword"
+                android:textColorHint="#505050" />
+
+            <EditText
+                android:id="@+id/eTxtMotDePasse2"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="#FFFFFF"
+                android:ems="10"
+                android:hint="@string/r_p_ter_mot_de_passe"
+                android:inputType="textPassword"
+                android:textColorHint="#505050" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/txtInfos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="39dp"
+        android:text="@string/veuillez_entrer_vos_informations"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnInscription"
+        android:layout_width="196dp"
+        android:layout_height="72dp"
+        android:layout_marginBottom="91dp"
+        android:backgroundTint="#A6A0E4"
+        android:text="@string/je_m_inscris"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,4 +5,12 @@
     <string name="premi_re_connexion">Première connexion?</string>
     <string name="se_connecter">Se connecter</string>
     <string name="agence_de_voyage_et_co">Agence de voyage et co.</string>
+    <string name="nom">Nom</string>
+    <string name="pr_nom">Prénom</string>
+    <string name="ge">Âge</string>
+    <string name="adresse">Adresse</string>
+    <string name="num_ro_de_t_l_phone">Numéro de téléphone</string>
+    <string name="r_p_ter_mot_de_passe">Répéter mot de passe</string>
+    <string name="veuillez_entrer_vos_informations">Veuillez entrer vos informations</string>
+    <string name="je_m_inscris">Je m\'inscris</string>
 </resources>

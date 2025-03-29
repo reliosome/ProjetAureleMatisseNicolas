@@ -5,7 +5,7 @@
  *  Auteurs : Aurèle Collin, Matisse Ruel, Nicolas Berlinguet
  *
  *************************************************************/
-package com.caurele.projetsession;
+package com.caurele.projetsession.vue;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +18,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.caurele.projetsession.R;
 
 public class ConnexionActivity extends AppCompatActivity {
 
@@ -43,8 +45,18 @@ public class ConnexionActivity extends AppCompatActivity {
         btnInscrire.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intention = new Intent(this, Inscription.java);
+                Intent intention = new Intent(ConnexionActivity.this, InscriptionActivity.class);
                 startActivity(intention);
+            }
+        });
+
+        btnConnect.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                String courriel = String.valueOf(eTxtCourriel.getText());
+                String motPasse = String.valueOf(eTxtMotPasse.getText());
+
+                // Authentifier(courriel, motPasse); TODO
             }
         });
     }

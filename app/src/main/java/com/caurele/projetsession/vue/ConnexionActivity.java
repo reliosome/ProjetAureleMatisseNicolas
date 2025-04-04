@@ -21,6 +21,11 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.caurele.projetsession.R;
 import com.caurele.projetsession.model.UtilitaireJSON;
+import com.caurele.projetsession.vueModel.Client;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.json.JSONObject;
 
 public class ConnexionActivity extends AppCompatActivity {
 
@@ -59,16 +64,43 @@ public class ConnexionActivity extends AppCompatActivity {
                 (new Thread(){
                     @Override
                     public void run(){
-                        String test = utilJson.getVoyages();
+                        String clients = utilJson.getClients();
+
+                        String courriel = String.valueOf(eTxtCourriel.getText());
+                        String motPasse = String.valueOf(eTxtMotPasse.getText());
+
+                        ObjectMapper mapperClient = new ObjectMapper();
+                        Client[] lesClients;
+                        try {
+                            lesClients = mapperClient.readValue(clients, Client[].class);
+                        } catch (JsonProcessingException e){
+                            throw new RuntimeException(e);
+                        }
+
+                        Intent iAccueil = new Intent(ConnexionActivity.this, AccueilActivity.class);
+
+                        if(Authentifier(courriel, motPasse, lesClients)){
+                            startActivity(iAccueil);
+                        }
                     }
                 }).start();
-
-
-                // String courriel = String.valueOf(eTxtCourriel.getText());
-                // String motPasse = String.valueOf(eTxtMotPasse.getText());
-
-                // Authentifier(courriel, motPasse); TODO
             }
         });
+    }
+
+    private boolean Authentifier(String courriel, String motPasse, Client[] clients) {
+        Client user = null;
+
+        for(int i=0; i< clients.length; i++){
+            if(clients[i].existe(courriel)){
+                user = clients[i];
+            }
+        }
+
+        if(user != null){
+            return user.getMdp().equals(motPasse);
+        }
+
+        return false;
     }
 }

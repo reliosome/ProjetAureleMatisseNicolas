@@ -1,7 +1,7 @@
 package com.caurele.projetsession.vueModel;
 
 public class Client {
-    private int id_client;
+    private int id;
     private String nom;
     private String prenom;
     private String email;
@@ -13,7 +13,7 @@ public class Client {
     public Client(){}
     public Client(int id_client, String nom, String prenom, String email, String mdp,
                   int age, String telephone, String adresse) {
-        this.id_client = id_client;
+        this.id = id_client;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
@@ -23,12 +23,16 @@ public class Client {
         this.adresse = adresse;
     }
 
-    public int getId_client() {
-        return id_client;
+    public boolean existe(String courriel){
+        return courriel.equals(this.email);
     }
 
-    public void setId_client(int id_client) {
-        this.id_client = id_client;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNom() {

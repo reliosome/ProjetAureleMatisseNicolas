@@ -7,4 +7,13 @@
     android:layout_height="match_parent"
     tools:context=".vue.AccueilActivity">
 
+    <TextView
+        android:id="@+id/ttemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="132dp"
+        android:layout_marginEnd="84dp"
+        android:text="CONNEXION RÉUSSIE!!!!"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

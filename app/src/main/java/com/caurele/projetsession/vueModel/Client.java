@@ -23,6 +23,20 @@ public class Client {
         this.adresse = adresse;
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+                "\"id\":" + id + "," +
+                "\"nom\":\"" + nom + "\"," +
+                "\"prenom\":\"" + prenom + "\"," +
+                "\"email\":\"" + email + "\"," +
+                "\"mdp\":\"" + mdp + "\"," +
+                "\"age\":" + age + "," +
+                "\"telephone\":\"" + telephone + "\"," +
+                "\"adresse\":\"" + adresse + "\"" +
+                '}';
+    }
+
     public boolean existe(String courriel){
         return courriel.equals(this.email);
     }

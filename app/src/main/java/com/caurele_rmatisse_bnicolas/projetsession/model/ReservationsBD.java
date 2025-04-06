@@ -1,4 +1,4 @@
-package com.caurele.projetsession.model;
+package com.caurele_rmatisse_bnicolas.projetsession.model;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

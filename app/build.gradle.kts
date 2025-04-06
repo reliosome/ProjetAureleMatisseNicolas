@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.caurele.projetsession"
+    namespace = "com.caurele_rmatisse_bnicolas.projetsession"
     compileSdk = 35
 
     defaultConfig {

@@ -5,7 +5,7 @@
  *  Auteurs : Aurèle Collin, Matisse Ruel, Nicolas Berlinguet
  *
  *************************************************************/
-package com.caurele.projetsession.vue;
+package com.caurele_rmatisse_bnicolas.projetsession.vue;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,13 +19,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.caurele.projetsession.R;
-import com.caurele.projetsession.model.UtilitaireJSON;
-import com.caurele.projetsession.vueModel.Client;
+import com.caurele_rmatisse_bnicolas.projetsession.R;
+import com.caurele_rmatisse_bnicolas.projetsession.model.UtilitaireJSON;
+import com.caurele_rmatisse_bnicolas.projetsession.vueModel.Client;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import org.json.JSONObject;
 
 public class ConnexionActivity extends AppCompatActivity {
 

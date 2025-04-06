@@ -1,4 +1,4 @@
-package com.caurele.projetsession.vueModel;
+package com.caurele_rmatisse_bnicolas.projetsession.vueModel;
 
 public class Voyage {
     private int id_voyage;

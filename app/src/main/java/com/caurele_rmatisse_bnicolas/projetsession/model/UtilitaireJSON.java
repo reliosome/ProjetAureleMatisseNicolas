@@ -1,6 +1,6 @@
-package com.caurele.projetsession.model;
+package com.caurele_rmatisse_bnicolas.projetsession.model;
 
-import com.caurele.projetsession.vueModel.Client;
+import com.caurele_rmatisse_bnicolas.projetsession.vueModel.Client;
 
 import java.io.IOException;
 
@@ -10,7 +10,6 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
-import okhttp3.internal.Util;
 
 public class UtilitaireJSON {
     // partir le serveur JSON :

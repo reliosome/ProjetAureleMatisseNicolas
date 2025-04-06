@@ -1,4 +1,4 @@
-package com.caurele.projetsession;
+package com.caurele_rmatisse_bnicolas.projetsession;
 
 import android.content.Context;
 

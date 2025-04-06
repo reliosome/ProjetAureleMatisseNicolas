@@ -16,6 +16,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".vue.HistoriqueActivity"
+            android:exported="false" />
+        <activity
+            android:name=".vue.DetailsVoyageActivity"
+            android:exported="false" />
+        <activity
             android:name=".vue.AccueilActivity"
             android:exported="false" />
         <activity

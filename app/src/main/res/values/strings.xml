@@ -13,4 +13,14 @@
     <string name="r_p_ter_mot_de_passe">Répéter mot de passe</string>
     <string name="veuillez_entrer_vos_informations">Veuillez entrer vos informations</string>
     <string name="je_m_inscris">Je m\'inscris</string>
+    <string name="rechercheVoy">Recherche de voyages</string>
+    <string name="prix">Prix : </string>
+    <string name="typeVoy">Tyoe de voyage : </string>
+    <string name="dateDep">Date du départ : </string>
+    <string name="destination">Destination : </string>
+    <string name="entreDest">Entrez votre destination</string>
+    <string name="entrePrix">Entrez votre budget</string>
+    <string name="entreType">Entrez votre type de voyage</string>
+    <string name="entreDate">Entrez votre date de départ</string>
+    <string name="rechercher">Rechercher</string>
 </resources>

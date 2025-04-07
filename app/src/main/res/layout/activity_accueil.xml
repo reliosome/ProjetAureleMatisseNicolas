@@ -5,15 +5,155 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".vue.AccueilActivity">
 
     <TextView
-        android:id="@+id/ttemp"
-        android:layout_width="wrap_content"
+        android:id="@+id/id_titreAccueil"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="132dp"
-        android:layout_marginEnd="84dp"
-        android:text="CONNEXION RÉUSSIE!!!!"
+
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="98dp"
+        android:text="@string/rechercheVoy"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/id_destText"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/id_destText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="29dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginBottom="56dp"
+        android:text="@string/destination"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/id_entrePrix"
+        app:layout_constraintEnd_toStartOf="@+id/id_entreDest"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_titreAccueil" />
+
+    <TextView
+        android:id="@+id/id_prixText"
+        android:layout_width="0dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="57dp"
+        android:text="@string/prix"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/id_entrePrix"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/id_entrePrix" />
+
+    <TextView
+        android:id="@+id/id_typeText"
+        android:layout_width="0dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="29dp"
+        android:layout_marginEnd="26dp"
+        android:text="@string/typeVoy"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/id_entreType"
+        app:layout_constraintEnd_toStartOf="@+id/id_entreType"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/id_dateText"
+        android:layout_width="0dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="18dp"
+        android:text="@string/dateDep"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/id_entreDate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/id_entreDate" />
+
+    <EditText
+        android:id="@+id/id_entreDest"
+        android:layout_width="180dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="101dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="101dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="@string/entreDest"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/id_entrePrix"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/id_destText"
+        app:layout_constraintTop_toBottomOf="@+id/id_titreAccueil" />
+
+    <EditText
+        android:id="@+id/id_entrePrix"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="82dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="@string/entrePrix"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/id_entreType"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/id_prixText"
+        app:layout_constraintTop_toBottomOf="@+id/id_destText" />
+
+    <EditText
+        android:id="@+id/id_entreType"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="92dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="@string/entreType"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/id_entreDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/id_typeText"
+        app:layout_constraintTop_toBottomOf="@+id/id_entrePrix" />
+
+    <EditText
+        android:id="@+id/id_entreDate"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="64dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="@string/entreDate"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/id_rechercher"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/id_dateText"
+        app:layout_constraintTop_toBottomOf="@+id/id_entreType" />
+
+    <Button
+        android:id="@+id/id_rechercher"
+        android:layout_width="184dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="62dp"
+        android:text="@string/rechercher"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.599"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_entreDate" />
+
+    <LinearLayout
+        android:id="@+id/id_lvVoy"
+        android:layout_width="324dp"
+        android:layout_height="515dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="69dp"
+        tools:layout_editor_absoluteY="109dp"></LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.caurele_rmatisse_bnicolas.projetsession.vue;
+package com.caurele.projetsession.vue;
 
 import android.os.Bundle;
 
@@ -8,7 +8,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.caurele_rmatisse_bnicolas.projetsession.R;
+import com.caurele.projetsession.R;
 
 public class DetailsVoyageActivity extends AppCompatActivity {
 

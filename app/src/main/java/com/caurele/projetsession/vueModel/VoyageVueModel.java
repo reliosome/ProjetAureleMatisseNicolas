@@ -1,4 +1,4 @@
-package com.caurele_rmatisse_bnicolas.projetsession.vueModel;
+package com.caurele.projetsession.vueModel;
 
 import androidx.lifecycle.ViewModel;
 

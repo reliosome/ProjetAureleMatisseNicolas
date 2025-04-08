@@ -1,6 +1,4 @@
-package com.caurele_rmatisse_bnicolas.projetsession.vue;
-
-import static android.os.Build.VERSION_CODES.R;
+package com.caurele.projetsession.vue;
 
 import android.os.Bundle;
 import android.widget.Button;
@@ -14,7 +12,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.caurele_rmatisse_bnicolas.projetsession.R;
+import com.caurele.projetsession.R;
 
 public class AccueilActivity extends AppCompatActivity {
 

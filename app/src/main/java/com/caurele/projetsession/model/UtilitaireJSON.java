@@ -1,6 +1,6 @@
-package com.caurele_rmatisse_bnicolas.projetsession.model;
+package com.caurele.projetsession.model;
 
-import com.caurele_rmatisse_bnicolas.projetsession.vueModel.Client;
+import com.caurele.projetsession.vueModel.Client;
 
 import java.io.IOException;
 
@@ -13,8 +13,8 @@ import okhttp3.ResponseBody;
 
 public class UtilitaireJSON {
     // partir le serveur JSON :
-    // npx json-server voyages.json
-    private final String URL_POINT_ENTREE = "http://10.0.2.2:3000"; // Ça se peut qu'il faille ajuster le port selon votre serveur JSON
+    // npx json-server voyages.json port 3000
+    private final String URL_POINT_ENTREE = "http://10.0.2.2:3000";
     private final String CLIENTS = "/clients";
     private final String VOYAGES = "/voyages";
     private OkHttpClient okHttpClient;

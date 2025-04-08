@@ -1,4 +1,4 @@
-package com.caurele_rmatisse_bnicolas.projetsession.vue;
+package com.caurele.projetsession.vue;
 
 import android.os.Bundle;
 import android.widget.Button;
@@ -11,9 +11,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.caurele_rmatisse_bnicolas.projetsession.R;
-import com.caurele_rmatisse_bnicolas.projetsession.model.UtilitaireJSON;
-import com.caurele_rmatisse_bnicolas.projetsession.vueModel.Client;
+import com.caurele.projetsession.R;
+import com.caurele.projetsession.model.UtilitaireJSON;
+import com.caurele.projetsession.vueModel.Client;
 
 public class InscriptionActivity extends AppCompatActivity {
 

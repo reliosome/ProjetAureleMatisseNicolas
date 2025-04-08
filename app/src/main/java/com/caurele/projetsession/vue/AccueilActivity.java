@@ -1,6 +1,9 @@
 package com.caurele.projetsession.vue;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -21,11 +24,12 @@ public class AccueilActivity extends AppCompatActivity {
     private TextView destinationText, prixText, typeText, dateText;
     private EditText destEdit, prixEdit, typeEdit, dateEdit;
 
-    private ListView lvVoyage;
 
 
 
 
+
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,9 +51,17 @@ public class AccueilActivity extends AppCompatActivity {
         typeEdit = findViewById(R.id.id_entreType);
         dateEdit = findViewById(R.id.id_entreDate);
 
+        rechercher.findViewById(R.id.id_rechercher);
 
 
+        rechercher.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Intent activite = new Intent(AccueilActivity.this, ListVoyage.class);
+                startActivity(activite);
+
+        }});
 
 
 

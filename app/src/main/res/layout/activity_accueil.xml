@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".vue.AccueilActivity">
+    tools:context="com.caurele_rmatisse_bnicolas.projetsession.vue.AccueilActivity">
 
     <TextView
         android:id="@+id/id_titreAccueil"
@@ -147,13 +147,5 @@
         app:layout_constraintHorizontal_bias="0.599"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/id_entreDate" />
-
-    <LinearLayout
-        android:id="@+id/id_lvVoy"
-        android:layout_width="324dp"
-        android:layout_height="515dp"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="69dp"
-        tools:layout_editor_absoluteY="109dp"></LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

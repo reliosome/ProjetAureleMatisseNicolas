@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="12dp"
     tools:context=".vue.ListVoyage">
 
     <TextView
         android:id="@+id/id_titrelistvoyage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/voyage"
+        android:text="Résultats de la recherche"
         android:textAlignment="center"
-        android:textSize="34sp" />
+        android:textSize="24sp"
+        android:paddingBottom="8dp" />
 
     <ListView
         android:id="@+id/id_lvVoy"
         android:layout_width="match_parent"
-        android:layout_height="616dp">
-
-    </ListView>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="1dp" />
 
     <Button
         android:id="@+id/id_annuler"
-        android:layout_width="188dp"
-        android:layout_height="69dp"
-        android:layout_gravity="center"
-        android:text="@string/annuler"
-        android:textSize="24sp"
-        app:iconPadding="10dp" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Annuler"
+        android:textSize="20sp" />
 
 </LinearLayout>

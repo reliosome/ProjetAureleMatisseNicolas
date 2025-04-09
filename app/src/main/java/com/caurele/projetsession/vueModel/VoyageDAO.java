@@ -8,10 +8,16 @@ import org.json.JSONObject;
 
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 
 public class VoyageDAO {
+    private static String stripAccents(String input) {
+        String normalized = Normalizer.normalize(input, Normalizer.Form.NFD);
+        return normalized.replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+    }
+
 
     public static List<Voyage> rechercherVoyages(Context context, String destination, String type,
                                                  String date, double prixMax) {
@@ -21,7 +27,7 @@ public class VoyageDAO {
         for (Voyage v : voyages) {
             boolean match = true;
 
-            if (!destination.isEmpty() && !v.getDestination().toLowerCase().contains(destination.toLowerCase()))
+            if (!destination.isEmpty() && !stripAccents(v.getDestination().toLowerCase()).contains(stripAccents(destination.toLowerCase())))
                 match = false;
 
             if (!type.isEmpty() && !v.getType_de_voyage().toLowerCase().contains(type.toLowerCase()))
@@ -38,7 +44,7 @@ public class VoyageDAO {
                 if (!dateOk) match = false;
             }
 
-            if (v.getPrix() > prixMax) match = false;
+            if (prixMax != Double.MAX_VALUE && v.getPrix() > prixMax) match = false;
 
             if (match) resultats.add(v);
         }

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.caurele_rmatisse_bnicolas.projetsession.vue.AccueilActivity">
+    tools:context="com.caurele.projetsession.vue.AccueilActivity">
 
     <TextView
         android:id="@+id/id_titreAccueil"
@@ -69,7 +69,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="13dp"
         android:layout_marginEnd="18dp"
-        android:text="@string/dateDep"
+        android:hint="@string/dateDep"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/id_entreDate"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,7 +84,7 @@
         android:layout_marginBottom="101dp"
         android:ems="10"
         android:inputType="text"
-        android:text="@string/entreDest"
+        android:hint="@string/entreDest"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/id_entrePrix"
         app:layout_constraintEnd_toEndOf="parent"
@@ -99,7 +99,7 @@
         android:layout_marginBottom="82dp"
         android:ems="10"
         android:inputType="text"
-        android:text="@string/entrePrix"
+        android:hint="@string/entrePrix"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/id_entreType"
         app:layout_constraintEnd_toEndOf="parent"
@@ -114,7 +114,7 @@
         android:layout_marginBottom="92dp"
         android:ems="10"
         android:inputType="text"
-        android:text="@string/entreType"
+        android:hint="@string/entreType"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/id_entreDate"
         app:layout_constraintEnd_toEndOf="parent"

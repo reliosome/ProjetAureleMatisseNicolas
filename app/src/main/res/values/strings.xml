@@ -23,6 +23,7 @@
     <string name="entreType">Entrez votre type de voyage</string>
     <string name="entreDate">Entrez votre date de départ</string>
     <string name="rechercher">Rechercher</string>
-    <string name="voyage">Voyage</string>
-    <string name="annuler">Annuler</string>
+    <string name="annuler" />
+    <string name="voyage" />
+    <string name="annulers">annuler</string>
 </resources>

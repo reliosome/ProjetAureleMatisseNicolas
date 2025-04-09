@@ -1,6 +1,7 @@
 package com.caurele.projetsession.vue;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +46,7 @@ public class VoyageAdapter extends ArrayAdapter<Voyage> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        Log.d("VOYAGE_ADAPTER", "getView called for position: " + position);
         Voyage voyage = getItem(position);
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_voyage, parent, false);

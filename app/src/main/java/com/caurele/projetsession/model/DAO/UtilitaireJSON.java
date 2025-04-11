@@ -1,4 +1,4 @@
-package com.caurele.projetsession.model;
+package com.caurele.projetsession.model.DAO;
 
 import com.caurele.projetsession.vueModel.Client;
 

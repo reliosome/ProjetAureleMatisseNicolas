@@ -14,20 +14,14 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.caurele.projetsession.R;
-import com.caurele.projetsession.model.UtilitaireJSON;
-import com.caurele.projetsession.vueModel.Client;
 import com.caurele.projetsession.vueModel.ClientVueModel;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ConnexionActivity extends AppCompatActivity {
 

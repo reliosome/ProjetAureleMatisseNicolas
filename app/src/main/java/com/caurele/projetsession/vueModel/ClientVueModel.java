@@ -1,13 +1,8 @@
 package com.caurele.projetsession.vueModel;
 
-import android.content.Intent;
-
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.caurele.projetsession.model.UtilitaireJSON;
-import com.caurele.projetsession.vue.AccueilActivity;
-import com.caurele.projetsession.vue.ConnexionActivity;
+import com.caurele.projetsession.model.DAO.UtilitaireJSON;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

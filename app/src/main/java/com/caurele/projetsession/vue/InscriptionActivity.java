@@ -13,8 +13,6 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.caurele.projetsession.R;
-import com.caurele.projetsession.model.UtilitaireJSON;
-import com.caurele.projetsession.vueModel.Client;
 import com.caurele.projetsession.vueModel.ClientVueModel;
 
 public class InscriptionActivity extends AppCompatActivity {

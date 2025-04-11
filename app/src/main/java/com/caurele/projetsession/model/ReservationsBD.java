@@ -11,6 +11,7 @@ public class ReservationsBD extends SQLiteOpenHelper {
     public static final String ID = "id_Reservation";
     public static final String NBPLACES = "nombre_Places";
     public static final String FKVOYAGE = "id_Voyage";
+    public static final String FKCLIENT = "id_Voyage";
     public static final String PRIX = "prix";
     public ReservationsBD(Context context) {
         super(context, "ReservationsBD", null, 1);
@@ -18,11 +19,12 @@ public class ReservationsBD extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String requete = String.format("create table %s (%s int primary key, %s int, %s int, %s double)",
+        String requete = String.format("create table %s (%s int primary key, %s int, %s int, %s int, %s double)",
                 RESERVATION,
                 ID,
                 NBPLACES,
                 FKVOYAGE,
+                FKCLIENT,
                 PRIX);
         db.execSQL(requete);
     }

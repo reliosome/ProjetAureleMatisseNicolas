@@ -54,6 +54,19 @@ public class VoyageDAO {
         return resultats;
     }
 
+    public static Voyage chercherVoyageParId(Context context, int idVoyage){
+        List<Voyage> voyages = lireVoyagesDepuisJson(context);
+        Voyage resultat = null;
+
+        for (Voyage v : voyages) {
+            if(v.getId_voyage() == (idVoyage)){
+                resultat = v;
+            }
+        }
+
+        return resultat;
+    }
+
     private static List<Voyage> lireVoyagesDepuisJson(Context context) {
         List<Voyage> voyages = new ArrayList<>();
 
@@ -109,4 +122,6 @@ public class VoyageDAO {
 
         return voyages;
     }
+
+
 }

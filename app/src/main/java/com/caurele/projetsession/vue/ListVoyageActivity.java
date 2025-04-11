@@ -16,7 +16,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.caurele.projetsession.R;
-import com.caurele.projetsession.model.adaptateur.VoyageAdapter;
+import com.caurele.projetsession.vue.adaptateur.VoyageAdapter;
 import com.caurele.projetsession.vueModel.Voyage;
 import com.caurele.projetsession.model.DAO.VoyageDAO;
 

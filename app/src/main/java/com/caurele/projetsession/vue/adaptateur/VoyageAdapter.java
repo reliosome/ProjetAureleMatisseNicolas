@@ -1,4 +1,4 @@
-package com.caurele.projetsession.model.adaptateur;
+package com.caurele.projetsession.vue.adaptateur;
 
 import android.app.Activity;
 import android.util.Log;

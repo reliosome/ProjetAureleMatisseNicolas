@@ -11,14 +11,17 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.caurele.projetsession.model.DAO.VoyageDAO;
 import com.caurele.projetsession.model.ReservationsBD;
 
 public class ReservationRepository {
 
     private ReservationsBD reservationsBD;
+    private Context context;
 
     public ReservationRepository(Context context){
         reservationsBD = new ReservationsBD(context);
+        this.context = context;
     }
 
     // Sauvegarder dans BD
@@ -28,11 +31,12 @@ public class ReservationRepository {
         valeurs.put(NBPLACES, nbPlaces);
         valeurs.put(FKVOYAGE, idVoyage);
 
-        /* Calculer le prix selon le voyage choisi et nb de places
+        // Calculer le prix selon le voyage choisi et nb de places
+        Voyage v = VoyageDAO.chercherVoyageParId(context, idVoyage);
+        double prixParPlace = v.getPrix();
+        double prixTotal = nbPlaces * prixParPlace;
 
-        valeurs.put(PRIX, );
-
-         */
+        valeurs.put(PRIX, prixTotal);
 
         db.insertWithOnConflict(RESERVATION, null, valeurs, SQLiteDatabase.CONFLICT_REPLACE);
 
@@ -56,7 +60,7 @@ public class ReservationRepository {
         db.close();
         return null; // pas trouvé de valeur dans table
     }
-    
+
      */
 
 }

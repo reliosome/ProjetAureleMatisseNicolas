@@ -7,13 +7,24 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 public class ReservationsBD extends SQLiteOpenHelper {
-    public ReservationsBD(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
+    public static final String RESERVATION = "reservation";
+    public static final String ID = "id_Reservation";
+    public static final String NBPLACES = "nombre_Places";
+    public static final String FKVOYAGE = "id_Voyage";
+    public static final String PRIX = "prix";
+    public ReservationsBD(Context context) {
+        super(context, "ReservationsBD", null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        //TODO
+        String requete = String.format("create table %s (%s int primary key, %s int, %s int, %s double)",
+                RESERVATION,
+                ID,
+                NBPLACES,
+                FKVOYAGE,
+                PRIX);
+        db.execSQL(requete);
     }
 
     @Override

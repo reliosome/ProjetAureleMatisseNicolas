@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -73,7 +72,7 @@ public class AccueilActivity extends AppCompatActivity {
                     prixMax = Double.MAX_VALUE;
                 }
 
-                Intent intent = new Intent(AccueilActivity.this, ListVoyage.class);
+                Intent intent = new Intent(AccueilActivity.this, ListVoyageActivity.class);
                 intent.putExtra("destination", destination);
                 intent.putExtra("type", type);
                 intent.putExtra("date", date);

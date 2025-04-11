@@ -21,7 +21,7 @@
         <activity
             android:name=".vue.DetailsVoyageActivity"
             android:exported="false" />
-        <activity android:name=".vue.ListVoyage"/>
+        <activity android:name=".vue.ListVoyageActivity"/>
         <activity
             android:name=".vue.AccueilActivity"
             android:exported="false" />

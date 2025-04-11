@@ -1,7 +1,9 @@
-package com.caurele.projetsession.vueModel;
+package com.caurele.projetsession.model.DAO;
 
 import android.content.Context;
 import android.util.Log;
+
+import com.caurele.projetsession.vueModel.Voyage;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

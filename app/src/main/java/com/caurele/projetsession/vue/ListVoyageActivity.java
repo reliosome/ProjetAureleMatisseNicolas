@@ -16,12 +16,13 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.caurele.projetsession.R;
+import com.caurele.projetsession.model.adaptateur.VoyageAdapter;
 import com.caurele.projetsession.vueModel.Voyage;
-import com.caurele.projetsession.vueModel.VoyageDAO;
+import com.caurele.projetsession.model.DAO.VoyageDAO;
 
 import java.util.List;
 
-public class ListVoyage extends AppCompatActivity {
+public class ListVoyageActivity extends AppCompatActivity {
 
     private TextView titre;
     private VoyageAdapter voyageAdapter;
@@ -63,7 +64,7 @@ public class ListVoyage extends AppCompatActivity {
 
         lvVoyage.setOnItemClickListener((parent, view, position, id) -> {
             Voyage voyage = voyageAdapter.getItem(position);
-            Intent i = new Intent(ListVoyage.this, DetailsVoyageActivity.class);
+            Intent i = new Intent(ListVoyageActivity.this, DetailsVoyageActivity.class);
             i.putExtra("voyage", voyage);
             startActivity(i);
         });

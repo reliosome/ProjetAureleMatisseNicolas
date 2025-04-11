@@ -1,10 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.caurele_rmatisse_bnicolas.projetsession.vue.DetailsVoyageActivity">
+    android:id="@+id/main"
+    android:background="#EBEAF4"
+    tools:context=".vue.DetailsVoyageActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/imageVoyage"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop" />
+
+        <TextView android:id="@+id/titreVoyage" android:textStyle="bold" android:textSize="22sp"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" />
+
+        <TextView android:id="@+id/destinationVoyage" android:textSize="16sp"
+            android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+        <TextView android:id="@+id/typeVoyage" android:textSize="16sp"
+            android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+        <TextView android:id="@+id/dureeVoyage" android:textSize="16sp"
+            android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+        <TextView android:id="@+id/prixVoyage" android:textSize="16sp"
+            android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+        <TextView android:id="@+id/descriptionVoyage"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" />
+
+        <Spinner
+            android:id="@+id/spinnerDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:minHeight="48dp" />
+
+        <TextView android:id="@+id/placesDisponibles"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" />
+
+        <EditText
+            android:id="@+id/editNombrePlaces"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:hint="Nombre de places"
+            android:inputType="number"
+            android:minHeight="48dp" />
+
+        <Button android:id="@+id/btnReserver"
+            android:text="Réserver maintenant"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="12dp" />
+
+        <TextView android:id="@+id/prixTotal"
+            android:textStyle="bold"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" />
+    </LinearLayout>
+</ScrollView>

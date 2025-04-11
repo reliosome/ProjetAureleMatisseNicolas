@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -51,15 +50,34 @@ public class AccueilActivity extends AppCompatActivity {
         typeEdit = findViewById(R.id.id_entreType);
         dateEdit = findViewById(R.id.id_entreDate);
 
-        rechercher.findViewById(R.id.id_rechercher);
 
 
         rechercher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String destination = destEdit.getText().toString().trim();
+                String type = typeEdit.getText().toString().trim();
+                String date = dateEdit.getText().toString().trim();
+                String prixStr = prixEdit.getText().toString().trim();
 
-                Intent activite = new Intent(AccueilActivity.this, ListVoyage.class);
-                startActivity(activite);
+                if (destination.equalsIgnoreCase("Entrez votre destination")) destination = "";
+                if (type.equalsIgnoreCase("Entrez un type de voyage")) type = "";
+                if (date.equalsIgnoreCase("Entrez votre date de départ")) date = "";
+                if (prixStr.equalsIgnoreCase("Entrez votre budget")) prixStr = "";
+
+                double prixMax;
+                try {
+                    prixMax = prixStr.isEmpty() ? Double.MAX_VALUE : Double.parseDouble(prixStr);
+                } catch (NumberFormatException e) {
+                    prixMax = Double.MAX_VALUE;
+                }
+
+                Intent intent = new Intent(AccueilActivity.this, ListVoyageActivity.class);
+                intent.putExtra("destination", destination);
+                intent.putExtra("type", type);
+                intent.putExtra("date", date);
+                intent.putExtra("prixMax", prixMax);
+                startActivity(intent);
 
         }});
 

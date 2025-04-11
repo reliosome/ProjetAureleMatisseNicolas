@@ -1,5 +1,6 @@
 package com.caurele.projetsession.vue;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -9,6 +10,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.caurele.projetsession.R;
+import com.caurele.projetsession.model.ReservationsBD;
 
 public class DetailsVoyageActivity extends AppCompatActivity {
 
@@ -22,5 +24,7 @@ public class DetailsVoyageActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+
     }
 }

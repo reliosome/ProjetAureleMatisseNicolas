@@ -1,6 +1,8 @@
 package com.caurele.projetsession.vueModel;
 
-public class Voyage {
+import java.io.Serializable;
+
+public class Voyage implements Serializable {
     private int id_voyage;
     private String nom_voyage;
     private String description;
@@ -8,7 +10,7 @@ public class Voyage {
     private String destination;
     private String image_url;
     private int duree_jours;
-    public class Trip {
+    public class Trip implements Serializable {
         public String date;
         public int nb_places_disponibles;
         public Trip(){}

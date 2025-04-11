@@ -61,6 +61,7 @@ public class VoyageDAO {
         for (Voyage v : voyages) {
             if(v.getId_voyage() == (idVoyage)){
                 resultat = v;
+                break;
             }
         }
 

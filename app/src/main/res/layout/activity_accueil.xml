@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
 
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="98dp"
+        android:layout_marginBottom="96dp"
         android:text="@string/rechercheVoy"
         android:textAlignment="center"
         android:textSize="24sp"
@@ -27,12 +27,12 @@
         android:id="@+id/id_destText"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="29dp"
-        android:layout_marginEnd="38dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="47dp"
+        android:layout_marginBottom="65dp"
         android:text="@string/destination"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/id_entrePrix"
+        app:layout_constraintBottom_toTopOf="@+id/id_prixText"
         app:layout_constraintEnd_toStartOf="@+id/id_entreDest"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/id_titreAccueil" />
@@ -40,112 +40,108 @@
     <TextView
         android:id="@+id/id_prixText"
         android:layout_width="0dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="29dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="57dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="39dp"
+        android:layout_marginBottom="82dp"
         android:text="@string/prix"
         android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/id_typeText"
         app:layout_constraintEnd_toStartOf="@+id/id_entrePrix"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/id_entrePrix" />
+        app:layout_constraintTop_toBottomOf="@+id/id_destText" />
 
     <TextView
         android:id="@+id/id_typeText"
         android:layout_width="0dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="29dp"
-        android:layout_marginEnd="26dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="29dp"
+        android:layout_marginBottom="97dp"
         android:text="@string/typeVoy"
         android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/id_entreType"
+        app:layout_constraintBottom_toTopOf="@+id/id_entreDate"
         app:layout_constraintEnd_toStartOf="@+id/id_entreType"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_prixText" />
 
     <TextView
         android:id="@+id/id_dateText"
         android:layout_width="0dp"
         android:layout_height="39dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="18dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="17dp"
         android:hint="@string/dateDep"
         android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/id_entreDate"
         app:layout_constraintEnd_toStartOf="@+id/id_entreDate"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/id_entreDate" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/id_entreDest"
-        android:layout_width="180dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="101dp"
-        android:layout_marginEnd="18dp"
-        android:layout_marginBottom="101dp"
+        android:layout_width="0dp"
+        android:layout_height="37dp"
+        android:layout_marginEnd="12dp"
         android:ems="10"
-        android:inputType="text"
         android:hint="@string/entreDest"
+        android:inputType="text"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/id_entrePrix"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/id_destText"
-        app:layout_constraintTop_toBottomOf="@+id/id_titreAccueil" />
+        app:layout_constraintTop_toTopOf="@+id/id_destText" />
 
     <EditText
         android:id="@+id/id_entrePrix"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="18dp"
-        android:layout_marginBottom="82dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="67dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="71dp"
         android:ems="10"
-        android:inputType="text"
         android:hint="@string/entrePrix"
+        android:inputType="text"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/id_entreType"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/id_prixText"
-        app:layout_constraintTop_toBottomOf="@+id/id_destText" />
+        app:layout_constraintTop_toBottomOf="@+id/id_entreDest" />
 
     <EditText
         android:id="@+id/id_entreType"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="14dp"
-        android:layout_marginBottom="92dp"
+        android:layout_height="47dp"
+        android:layout_marginEnd="2dp"
         android:ems="10"
-        android:inputType="text"
         android:hint="@string/entreType"
+        android:inputType="text"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/id_entreDate"
+        app:layout_constraintBaseline_toBaselineOf="@+id/id_typeText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/id_typeText"
-        app:layout_constraintTop_toBottomOf="@+id/id_entrePrix" />
+        app:layout_constraintStart_toEndOf="@+id/id_typeText" />
 
     <EditText
         android:id="@+id/id_entreDate"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="11dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="74dp"
         android:ems="10"
+        android:hint="@string/entreDate"
         android:inputType="text"
-        android:text="@string/entreDate"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/id_rechercher"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/id_dateText"
-        app:layout_constraintTop_toBottomOf="@+id/id_entreType" />
+        app:layout_constraintTop_toBottomOf="@+id/id_typeText" />
 
     <Button
         android:id="@+id/id_rechercher"
         android:layout_width="184dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="62dp"
+        android:layout_marginEnd="91dp"
+        android:layout_marginBottom="61dp"
         android:text="@string/rechercher"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.599"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/id_entreDate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

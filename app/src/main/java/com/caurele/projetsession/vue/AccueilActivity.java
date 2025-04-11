@@ -23,11 +23,6 @@ public class AccueilActivity extends AppCompatActivity {
     private TextView destinationText, prixText, typeText, dateText;
     private EditText destEdit, prixEdit, typeEdit, dateEdit;
 
-
-
-
-
-
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {

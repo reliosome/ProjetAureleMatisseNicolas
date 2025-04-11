@@ -10,16 +10,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.caurele.projetsession.R;
 import com.caurele.projetsession.model.UtilitaireJSON;
 import com.caurele.projetsession.vueModel.Client;
+import com.caurele.projetsession.vueModel.ClientVueModel;
 
 public class InscriptionActivity extends AppCompatActivity {
 
     private EditText eTxtNom, eTxtPrenom, eTxtAge, eTxtAdresse,
             eTxtTelephone, eTxtCourriel, eTxtMotPasse, eTxtMotPasse2;
     private Button btnInscription;
+    private ClientVueModel clientVueModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,9 @@ public class InscriptionActivity extends AppCompatActivity {
 
         btnInscription = findViewById(R.id.btnInscription);
 
+        clientVueModel = new ViewModelProvider(this).get(ClientVueModel.class);
+
+
         btnInscription.setOnClickListener(v -> {
             String mdp1 = eTxtMotPasse.getText().toString();
             String mdp2 = eTxtMotPasse2.getText().toString();
@@ -57,14 +63,16 @@ public class InscriptionActivity extends AppCompatActivity {
                 (new Thread(){
                     @Override
                     public void run(){
-                        UtilitaireJSON utilJson = new UtilitaireJSON();
 
-                        Client nouvClient = new Client(utilJson.getLastId()+1, eTxtNom.getText().toString(), eTxtPrenom.getText().toString(),
-                                eTxtCourriel.getText().toString(), eTxtMotPasse.getText().toString(),
-                                Integer.parseInt(eTxtAge.getText().toString()),
-                                eTxtTelephone.getText().toString(), eTxtAdresse.getText().toString());
+                        String nom = eTxtNom.getText().toString();
+                        String prenom = eTxtPrenom.getText().toString();
+                        String courriel = eTxtCourriel.getText().toString();
+                        String motPasse = eTxtMotPasse.getText().toString();
+                        int age = Integer.parseInt(eTxtAge.getText().toString());
+                        String telephone = eTxtTelephone.getText().toString();
+                        String adresse = eTxtAdresse.getText().toString();
 
-                        if(utilJson.creerClient(nouvClient)){
+                        if(clientVueModel.inscription(nom,prenom,courriel,motPasse,age,telephone,adresse)){
                             finish();
                         }
                     }

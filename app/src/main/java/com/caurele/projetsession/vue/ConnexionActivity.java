@@ -14,14 +14,18 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.caurele.projetsession.R;
 import com.caurele.projetsession.model.UtilitaireJSON;
 import com.caurele.projetsession.vueModel.Client;
+import com.caurele.projetsession.vueModel.ClientVueModel;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -29,6 +33,7 @@ public class ConnexionActivity extends AppCompatActivity {
 
     private EditText eTxtCourriel, eTxtMotPasse;
     private Button btnConnect, btnInscrire;
+    private ClientVueModel clientVueModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +51,10 @@ public class ConnexionActivity extends AppCompatActivity {
         btnConnect = findViewById(R.id.btnConnecter);
         btnInscrire = findViewById(R.id.btnInscrire);
 
+        // Faire un CLIENT VUE MODEL
+        clientVueModel = new ViewModelProvider(this).get(ClientVueModel.class);
+
+
         btnInscrire.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,48 +66,20 @@ public class ConnexionActivity extends AppCompatActivity {
         btnConnect.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                UtilitaireJSON utilJson = new UtilitaireJSON();
 
                 (new Thread(){
                     @Override
                     public void run(){
-                        String clients = utilJson.getClients();
-
-                        String courriel = String.valueOf(eTxtCourriel.getText());
-                        String motPasse = String.valueOf(eTxtMotPasse.getText());
-
-                        ObjectMapper mapperClient = new ObjectMapper();
-                        Client[] lesClients;
-                        try {
-                            lesClients = mapperClient.readValue(clients, Client[].class);
-                        } catch (JsonProcessingException e){
-                            throw new RuntimeException(e);
-                        }
-
-                        Intent iAccueil = new Intent(ConnexionActivity.this, AccueilActivity.class);
-
-                        if(Authentifier(courriel, motPasse, lesClients)){
+                        if(clientVueModel.connexion(eTxtCourriel.getText().toString(), eTxtMotPasse.getText().toString())){
+                            Intent iAccueil = new Intent(ConnexionActivity.this, AccueilActivity.class);
                             startActivity(iAccueil);
                         }
                     }
                 }).start();
+
             }
         });
     }
 
-    private boolean Authentifier(String courriel, String motPasse, Client[] clients) {
-        Client user = null;
 
-        for(int i=0; i< clients.length; i++){
-            if(clients[i].existe(courriel)){
-                user = clients[i];
-            }
-        }
-
-        if(user != null){
-            return user.getMdp().equals(motPasse);
-        }
-
-        return false;
-    }
 }

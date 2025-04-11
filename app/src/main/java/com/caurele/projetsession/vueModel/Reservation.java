@@ -7,15 +7,17 @@ public class Reservation {
     private double prix;
     private int fkIdVoyage;
     private int fkIdClient;
+    private int confirme; // 0 ou 1
 
     public Reservation(){}
 
-    public Reservation(int id, int nbPlaces, double prix, int fkIdVoyage, int fkIdClient) {
+    public Reservation(int id, int nbPlaces, double prix, int fkIdVoyage, int fkIdClient, int confirme) {
         this.id = id;
         this.nbPlaces = nbPlaces;
         this.prix = prix;
         this.fkIdVoyage = fkIdVoyage;
         this.fkIdClient = fkIdClient;
+        this.confirme = confirme;
     }
 
     public int getId() {
@@ -56,5 +58,13 @@ public class Reservation {
 
     public void setFkIdClient(int fkIdClient) {
         this.fkIdClient = fkIdClient;
+    }
+
+    public int isConfirme() {
+        return confirme;
+    }
+
+    public void setConfirme(int confirme) {
+        this.confirme = confirme;
     }
 }

@@ -1,5 +1,6 @@
 package com.caurele.projetsession.vueModel;
 
+import static com.caurele.projetsession.model.ReservationsBD.CONFIRME;
 import static com.caurele.projetsession.model.ReservationsBD.FKCLIENT;
 import static com.caurele.projetsession.model.ReservationsBD.FKVOYAGE;
 import static com.caurele.projetsession.model.ReservationsBD.ID;
@@ -66,7 +67,8 @@ public class ReservationRepository {
                                                 c.getInt(c.getColumnIndex(NBPLACES)),
                                                 c.getDouble(c.getColumnIndex(PRIX)),
                                                 c.getInt(c.getColumnIndex(FKVOYAGE)),
-                                                idClient
+                                                idClient,
+                                                c.getInt(c.getColumnIndex(CONFIRME))
                                                 )
                                 );
             }

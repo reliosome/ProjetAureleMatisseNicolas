@@ -13,19 +13,21 @@ public class ReservationsBD extends SQLiteOpenHelper {
     public static final String FKVOYAGE = "id_Voyage";
     public static final String FKCLIENT = "id_Voyage";
     public static final String PRIX = "prix";
+    public static final String CONFIRME = "confirme";
     public ReservationsBD(Context context) {
         super(context, "ReservationsBD", null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String requete = String.format("create table %s (%s int primary key, %s int, %s int, %s int, %s double)",
+        String requete = String.format("create table %s (%s int primary key, %s int, %s int, %s int, %s double, %s int)",
                 RESERVATION,
                 ID,
                 NBPLACES,
                 FKVOYAGE,
                 FKCLIENT,
-                PRIX);
+                PRIX,
+                CONFIRME);
         db.execSQL(requete);
     }
 

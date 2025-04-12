@@ -11,7 +11,7 @@ public class ReservationsBD extends SQLiteOpenHelper {
     public static final String ID = "id_Reservation";
     public static final String NBPLACES = "nombre_Places";
     public static final String FKVOYAGE = "id_Voyage";
-    public static final String FKCLIENT = "id_Voyage";
+    public static final String FKCLIENT = "id_Client";
     public static final String PRIX = "prix";
     public static final String CONFIRME = "confirme";
     public ReservationsBD(Context context) {
@@ -33,7 +33,8 @@ public class ReservationsBD extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        //TODO
+        db.execSQL("DROP TABLE IF EXISTS " + RESERVATION);
+        onCreate(db);
     }
 
 }

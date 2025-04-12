@@ -22,6 +22,7 @@ public class AccueilActivity extends AppCompatActivity {
     private Button rechercher;
     private TextView destinationText, prixText, typeText, dateText;
     private EditText destEdit, prixEdit, typeEdit, dateEdit;
+    private Button btnHistorique;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -45,38 +46,41 @@ public class AccueilActivity extends AppCompatActivity {
         typeEdit = findViewById(R.id.id_entreType);
         dateEdit = findViewById(R.id.id_entreDate);
 
+        btnHistorique = findViewById(R.id.btnHistorique);
 
+        btnHistorique.setOnClickListener(v -> {
+                    Intent intent = new Intent(AccueilActivity.this, HistoriqueActivity.class);
+                    startActivity(intent);
+                });
+            rechercher.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String destination = destEdit.getText().toString().trim();
+                    String type = typeEdit.getText().toString().trim();
+                    String date = dateEdit.getText().toString().trim();
+                    String prixStr = prixEdit.getText().toString().trim();
 
-        rechercher.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String destination = destEdit.getText().toString().trim();
-                String type = typeEdit.getText().toString().trim();
-                String date = dateEdit.getText().toString().trim();
-                String prixStr = prixEdit.getText().toString().trim();
+                    if (destination.equalsIgnoreCase("Entrez votre destination")) destination = "";
+                    if (type.equalsIgnoreCase("Entrez un type de voyage")) type = "";
+                    if (date.equalsIgnoreCase("Entrez votre date de départ")) date = "";
+                    if (prixStr.equalsIgnoreCase("Entrez votre budget")) prixStr = "";
 
-                if (destination.equalsIgnoreCase("Entrez votre destination")) destination = "";
-                if (type.equalsIgnoreCase("Entrez un type de voyage")) type = "";
-                if (date.equalsIgnoreCase("Entrez votre date de départ")) date = "";
-                if (prixStr.equalsIgnoreCase("Entrez votre budget")) prixStr = "";
+                    double prixMax;
+                    try {
+                        prixMax = prixStr.isEmpty() ? Double.MAX_VALUE : Double.parseDouble(prixStr);
+                    } catch (NumberFormatException e) {
+                        prixMax = Double.MAX_VALUE;
+                    }
 
-                double prixMax;
-                try {
-                    prixMax = prixStr.isEmpty() ? Double.MAX_VALUE : Double.parseDouble(prixStr);
-                } catch (NumberFormatException e) {
-                    prixMax = Double.MAX_VALUE;
+                    Intent intent = new Intent(AccueilActivity.this, ListVoyageActivity.class);
+                    intent.putExtra("destination", destination);
+                    intent.putExtra("type", type);
+                    intent.putExtra("date", date);
+                    intent.putExtra("prixMax", prixMax);
+                    startActivity(intent);
+
                 }
-
-                Intent intent = new Intent(AccueilActivity.this, ListVoyageActivity.class);
-                intent.putExtra("destination", destination);
-                intent.putExtra("type", type);
-                intent.putExtra("date", date);
-                intent.putExtra("prixMax", prixMax);
-                startActivity(intent);
-
-        }});
+            });
 
 
-
-    }
-}
+        }}

@@ -61,6 +61,8 @@
 
         <Button android:id="@+id/btnReserver"
             android:text="Réserver maintenant"
+            android:backgroundTint="#887FF1"
+            android:textColor="#000000"
             android:layout_width="match_parent" android:layout_height="wrap_content"
             android:layout_marginTop="12dp" />
 

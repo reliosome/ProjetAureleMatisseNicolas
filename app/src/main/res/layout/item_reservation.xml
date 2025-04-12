@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/destinationReservation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Destination"
+        android:textStyle="bold"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/dateVoyageReservation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/montantPayeReservation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Montant payé"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/statutReservation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Statut"
+        android:textSize="14sp"
+        android:textStyle="italic" />
+
+</LinearLayout>

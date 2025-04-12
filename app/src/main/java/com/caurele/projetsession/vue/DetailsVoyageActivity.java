@@ -8,6 +8,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.caurele.projetsession.R;
 import com.caurele.projetsession.vueModel.Voyage;
 
+import com.caurele.projetsession.vue.adaptateur.ReservationAdapter;
+import com.caurele.projetsession.vueModel.Reservation;
+import com.caurele.projetsession.vueModel.ReservationRepository;
+
 public class DetailsVoyageActivity extends AppCompatActivity {
 
     private TextView titre, destination, description, type, duree, prix, placesDispo, prixTotal;
@@ -54,8 +58,62 @@ public class DetailsVoyageActivity extends AppCompatActivity {
 
         trips = voyage.getTrips();
         String[] dates = new String[trips.length];
+
         for (int i = 0; i < trips.length; i++) {
             dates[i] = trips[i].date;
         }
 
-    }}
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, dates);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dateSpinner.setAdapter(adapter);
+
+        dateSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                updatePlaces(trips[position].nb_places_disponibles);
+            }
+
+            @Override public void onNothingSelected(AdapterView<?> parent) {}
+        });
+
+        reserver.setOnClickListener(v -> {
+            int selectedIndex = dateSpinner.getSelectedItemPosition();
+            int placesRestantes = trips[selectedIndex].nb_places_disponibles;
+
+            String nbStr = nombrePlaces.getText().toString().trim();
+            if (nbStr.isEmpty()) {
+                Toast.makeText(this, "Entrez le nombre de places", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            int nbDemandes = Integer.parseInt(nbStr);
+            if (nbDemandes <= 0) {
+                Toast.makeText(this, "Le nombre doit etre superieur a 0", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (nbDemandes > placesRestantes) {
+                Toast.makeText(this, "Pas assez de places disponibles ", Toast.LENGTH_LONG).show();
+            } else {
+                double total = voyage.getPrix() * nbDemandes;
+                prixTotal.setText("Prix total : " + String.format("%.2f $", total));
+                updatePlaces(placesRestantes - nbDemandes);
+                trips[selectedIndex].nb_places_disponibles -= nbDemandes;
+
+
+                ReservationRepository repository = new ReservationRepository(this);
+                repository.sauvegarderReservation(nbDemandes, voyage.getId_voyage(), 1); // 1 = client actuel (à adapter)
+
+                Toast.makeText(this, "Reservation confirmee", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        updatePlaces(trips[0].nb_places_disponibles);
+    }
+
+    private void updatePlaces(int nbPlaces) {
+        placesDispo.setText("Places disponibles : " + nbPlaces);
+        prixTotal.setText("");
+        reserver.setEnabled(nbPlaces > 0);
+    }
+    }

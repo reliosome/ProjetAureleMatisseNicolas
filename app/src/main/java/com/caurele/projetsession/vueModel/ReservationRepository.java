@@ -43,43 +43,54 @@ public class ReservationRepository {
         double prixTotal = nbPlaces * prixParPlace;
 
         valeurs.put(PRIX, prixTotal);
+        valeurs.put(CONFIRME, 1);
 
         db.insertWithOnConflict(RESERVATION, null, valeurs, SQLiteDatabase.CONFLICT_REPLACE);
 
         db.close();
     }
 
-    // Récupérer depuis BD
+    // Recuperer depuis BD
 
     @SuppressLint("Range")
     public ArrayList<Reservation> recupererReservations(int idClient){
         ArrayList<Reservation> reservations = new ArrayList<>();
-
         SQLiteDatabase db = reservationsBD.getReadableDatabase();
 
-        Cursor c = db.query(RESERVATION, new String[]{NBPLACES,FKVOYAGE,FKCLIENT,PRIX},
-                            FKCLIENT + "=?", new String[]{String.valueOf(idClient)},
-                            null, null, null);
+        Cursor c = db.query(RESERVATION,
+                new String[]{ID, NBPLACES, FKVOYAGE, FKCLIENT, PRIX, CONFIRME},
+                FKCLIENT + "=?",
+                new String[]{String.valueOf(idClient)},
+                null, null, null);
 
-        if(c.moveToFirst()){
-            do{
-                reservations.add(new Reservation(c.getInt(c.getColumnIndex(ID)),
-                                                c.getInt(c.getColumnIndex(NBPLACES)),
-                                                c.getDouble(c.getColumnIndex(PRIX)),
-                                                c.getInt(c.getColumnIndex(FKVOYAGE)),
-                                                idClient,
-                                                c.getInt(c.getColumnIndex(CONFIRME))
-                                                )
-                                );
-            }
-            while(c.moveToNext());
-
-            c.close();
-            db.close();
-            return reservations;
+        if (c.moveToFirst()) {
+            do {
+                reservations.add(new Reservation(
+                        c.getInt(c.getColumnIndex(ID)),
+                        c.getInt(c.getColumnIndex(NBPLACES)),
+                        c.getDouble(c.getColumnIndex(PRIX)),
+                        c.getInt(c.getColumnIndex(FKVOYAGE)),
+                        c.getInt(c.getColumnIndex(FKCLIENT)),
+                        c.getInt(c.getColumnIndex(CONFIRME))
+                ));
+            } while (c.moveToNext());
         }
+
+        c.close();
         db.close();
-        return null; // pas trouvé de réservations dans table
+
+        return reservations;
+    }
+
+    // Annuler une reserve
+    public void annulerReservation(int idReservation){
+        SQLiteDatabase db = reservationsBD.getWritableDatabase();
+        ContentValues valeurs = new ContentValues();
+        valeurs.put(ReservationsBD.CONFIRME, 0);
+        db.update(ReservationsBD.RESERVATION, valeurs,
+                ReservationsBD.ID + "=?",
+                new String[]{String.valueOf(idReservation)});
+        db.close();
     }
 
 

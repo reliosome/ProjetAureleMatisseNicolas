@@ -79,7 +79,7 @@
     <EditText
         android:id="@+id/id_entreDest"
         android:layout_width="0dp"
-        android:layout_height="37dp"
+        android:layout_height="48dp"
         android:layout_marginEnd="12dp"
         android:ems="10"
         android:hint="@string/entreDest"
@@ -92,7 +92,7 @@
     <EditText
         android:id="@+id/id_entrePrix"
         android:layout_width="0dp"
-        android:layout_height="45dp"
+        android:layout_height="48dp"
         android:layout_marginTop="67dp"
         android:layout_marginEnd="11dp"
         android:layout_marginBottom="71dp"
@@ -108,7 +108,7 @@
     <EditText
         android:id="@+id/id_entreType"
         android:layout_width="0dp"
-        android:layout_height="47dp"
+        android:layout_height="48dp"
         android:layout_marginEnd="2dp"
         android:ems="10"
         android:hint="@string/entreType"
@@ -139,9 +139,23 @@
         android:layout_height="0dp"
         android:layout_marginEnd="91dp"
         android:layout_marginBottom="61dp"
+        android:backgroundTint="#887FF1"
+        android:textColor="#000000"
         android:text="@string/rechercher"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/id_entreDate" />
+        app:layout_constraintTop_toBottomOf="@+id/id_entreDate"
+        tools:ignore="TouchTargetSizeCheck" />
+
+
+
+    <Button
+        android:id="@+id/btnHistorique"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#887FF1"
+        android:text="Historique des réservations"
+        android:layout_margin="16dp"
+        android:textSize="16sp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

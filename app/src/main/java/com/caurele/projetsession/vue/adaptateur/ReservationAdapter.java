@@ -51,6 +51,8 @@ public class ReservationAdapter extends BaseAdapter {
 
         ((TextView) view.findViewById(R.id.destinationReservation)).setText(v.getNom_voyage());
         ((TextView) view.findViewById(R.id.dateVoyageReservation)).setText(v.getTrips()[0].date);
+        ((TextView) view.findViewById(R.id.montantPayeReservation)).setText(String.valueOf(v.getPrix()));
+        ((TextView) view.findViewById(R.id.statutReservation)).setText(r.isConfirme() == 1 ? "Confirmée" : "Annulée");
 
         return view;
     }

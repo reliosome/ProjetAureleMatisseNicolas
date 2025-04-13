@@ -42,8 +42,8 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="7dp"
-        android:layout_marginEnd="39dp"
-        android:layout_marginBottom="82dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginBottom="81dp"
         android:text="@string/prix"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/id_typeText"
@@ -56,7 +56,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginEnd="29dp"
-        android:layout_marginBottom="97dp"
+        android:layout_marginBottom="98dp"
         android:text="@string/typeVoy"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/id_entreDate"
@@ -80,7 +80,7 @@
         android:id="@+id/id_entreDest"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginEnd="11dp"
         android:ems="10"
         android:hint="@string/entreDest"
         android:inputType="text"
@@ -93,9 +93,9 @@
         android:id="@+id/id_entrePrix"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:layout_marginTop="67dp"
+        android:layout_marginTop="65dp"
         android:layout_marginEnd="11dp"
-        android:layout_marginBottom="71dp"
+        android:layout_marginBottom="63dp"
         android:ems="10"
         android:hint="@string/entrePrix"
         android:inputType="text"
@@ -103,27 +103,30 @@
         app:layout_constraintBottom_toTopOf="@+id/id_entreType"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/id_prixText"
-        app:layout_constraintTop_toBottomOf="@+id/id_entreDest" />
+        app:layout_constraintTop_toBottomOf="@+id/id_destText" />
 
     <EditText
         android:id="@+id/id_entreType"
         android:layout_width="0dp"
         android:layout_height="48dp"
+        android:layout_marginTop="218dp"
         android:layout_marginEnd="2dp"
+        android:layout_marginBottom="218dp"
         android:ems="10"
         android:hint="@string/entreType"
         android:inputType="text"
         android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/id_typeText"
+        app:layout_constraintBottom_toBottomOf="@+id/id_rechercher"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/id_typeText" />
+        app:layout_constraintStart_toEndOf="@+id/id_typeText"
+        app:layout_constraintTop_toTopOf="@+id/id_entreDest" />
 
     <EditText
         android:id="@+id/id_entreDate"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginEnd="6dp"
-        android:layout_marginBottom="74dp"
+        android:layout_marginBottom="30dp"
         android:ems="10"
         android:hint="@string/entreDate"
         android:inputType="text"
@@ -133,29 +136,32 @@
         app:layout_constraintStart_toEndOf="@+id/id_dateText"
         app:layout_constraintTop_toBottomOf="@+id/id_typeText" />
 
+
     <Button
         android:id="@+id/id_rechercher"
         android:layout_width="184dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="91dp"
-        android:layout_marginBottom="61dp"
+        android:layout_marginEnd="92dp"
+        android:layout_marginBottom="25dp"
         android:backgroundTint="#887FF1"
-        android:textColor="#000000"
         android:text="@string/rechercher"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/btnHistorique"
+        app:layout_constraintEnd_toEndOf="@+id/id_entreDate"
         app:layout_constraintTop_toBottomOf="@+id/id_entreDate"
         tools:ignore="TouchTargetSizeCheck" />
 
-
-
     <Button
         android:id="@+id/btnHistorique"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
         android:backgroundTint="#887FF1"
         android:text="Historique des réservations"
-        android:layout_margin="16dp"
-        android:textSize="16sp"/>
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_rechercher" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

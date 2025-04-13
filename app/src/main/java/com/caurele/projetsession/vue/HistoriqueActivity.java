@@ -53,10 +53,13 @@ public class HistoriqueActivity extends AppCompatActivity {
         });
 
         historiqueViewModel.chargerReservations(this);
-        /*
+        historiqueViewModel = new ViewModelProvider(this).get(HistoriqueViewModel.class);
+        reservationVueModel = new ReservationVueModel(this);
+
+
         reservationVueModel = new ReservationVueModel(this);
         chargerReservations();
-         */
+
 
         listViewReservations.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -72,8 +75,9 @@ public class HistoriqueActivity extends AppCompatActivity {
                             .setPositiveButton("Oui", (dialog, which) -> {
                                 reservationVueModel.annulerReservation(reservation.getId());
                                 Toast.makeText(HistoriqueActivity.this, "Réservation annulée", Toast.LENGTH_SHORT).show();
-                                chargerReservations();
+                                historiqueViewModel.chargerReservations(HistoriqueActivity.this);
                             })
+
                             .setNegativeButton("Non", null)
                             .show();
                 } else {

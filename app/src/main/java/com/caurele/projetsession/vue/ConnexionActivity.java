@@ -41,7 +41,7 @@ public class ConnexionActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
+        
         eTxtCourriel = findViewById(R.id.eTxtCourriel);
         eTxtMotPasse = findViewById(R.id.eTxtMotPasse);
         btnConnect = findViewById(R.id.btnConnecter);

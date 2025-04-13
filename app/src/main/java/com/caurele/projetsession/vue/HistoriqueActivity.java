@@ -22,6 +22,7 @@ import com.caurele.projetsession.R;
 import com.caurele.projetsession.vue.adaptateur.ReservationAdapter;
 import com.caurele.projetsession.vueModel.Reservation;
 import com.caurele.projetsession.vueModel.ReservationRepository;
+import com.caurele.projetsession.vueModel.ReservationVueModel;
 
 import java.util.ArrayList;
 
@@ -29,7 +30,7 @@ public class HistoriqueActivity extends AppCompatActivity {
 
     private ListView listViewReservations;
     private ReservationAdapter adapter;
-    private ReservationRepository repository;
+    private ReservationVueModel reservationVueModel;
 
     private int idClientActuel = 1;
     @Override
@@ -40,7 +41,7 @@ public class HistoriqueActivity extends AppCompatActivity {
 
         listViewReservations = findViewById(R.id.listViewReservations);
 
-        repository = new ReservationRepository(this);
+        reservationVueModel = new ReservationVueModel(this);
         chargerReservations();
 
         listViewReservations.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -53,7 +54,7 @@ public class HistoriqueActivity extends AppCompatActivity {
                             .setTitle("Annuler la réservation")
                             .setMessage("Voulez-vous vraiment annuler cette réservation ?")
                             .setPositiveButton("Oui", (dialog, which) -> {
-                                repository.annulerReservation(reservation.getId());
+                                reservationVueModel.annulerReservation(reservation.getId());
                                 Toast.makeText(HistoriqueActivity.this, "Réservation annulée", Toast.LENGTH_SHORT).show();
                                 chargerReservations();
                             })
@@ -76,7 +77,7 @@ public class HistoriqueActivity extends AppCompatActivity {
     }
 
     private void chargerReservations() {
-        ArrayList<Reservation> reservations = repository.recupererReservations(idClientActuel);
+        ArrayList<Reservation> reservations = reservationVueModel.getReservations(idClientActuel);
 
         if (reservations != null && !reservations.isEmpty()) {
             if (adapter == null) {

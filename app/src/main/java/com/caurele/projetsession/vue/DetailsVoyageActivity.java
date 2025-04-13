@@ -6,6 +6,7 @@ import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.caurele.projetsession.R;
+import com.caurele.projetsession.vueModel.ReservationVueModel;
 import com.caurele.projetsession.vueModel.Voyage;
 
 import com.caurele.projetsession.vue.adaptateur.ReservationAdapter;
@@ -22,6 +23,7 @@ public class DetailsVoyageActivity extends AppCompatActivity {
 
     private Voyage voyage;
     private Voyage.Trip[] trips;
+    private ReservationVueModel reservationVueModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,8 @@ public class DetailsVoyageActivity extends AppCompatActivity {
         reserver = findViewById(R.id.btnReserver);
 
         voyage = (Voyage) getIntent().getSerializableExtra("voyage");
+
+        reservationVueModel = new ReservationVueModel(this);
 
         if (voyage == null) return;
 
@@ -100,8 +104,7 @@ public class DetailsVoyageActivity extends AppCompatActivity {
                 trips[selectedIndex].nb_places_disponibles -= nbDemandes;
 
 
-                ReservationRepository repository = new ReservationRepository(this);
-                repository.sauvegarderReservation(nbDemandes, voyage.getId_voyage(), 1); // 1 = client actuel (à adapter)
+                reservationVueModel.saveReservation(nbDemandes, voyage.getId_voyage(), 1); // 1 = client actuel (à adapter)
 
                 Toast.makeText(this, "Reservation confirmee", Toast.LENGTH_SHORT).show();
             }

@@ -13,6 +13,13 @@ import com.caurele.projetsession.vueModel.Voyage;
 
 import com.caurele.projetsession.vueModel.VoyageVueModel;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import com.caurele.projetsession.vueModel.Voyage.Trip;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 public class DetailsVoyageActivity extends AppCompatActivity {
 
     private TextView titre, destination, description, type, duree, prix, placesDispo, prixTotal;
@@ -133,4 +140,45 @@ public class DetailsVoyageActivity extends AppCompatActivity {
         prixTotal.setText("");
         reserver.setEnabled(nbPlaces > 0);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        rafraichirVoyageDepuisServeur();
+    }
+
+    private void rafraichirVoyageDepuisServeur() {
+        new Thread(() -> {
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder()
+                    .url("http://10.0.2.2:3000/voyages/" + voyage.getId_voyage())
+                    .build();
+
+            try (Response response = client.newCall(request).execute()) {
+                if (response.isSuccessful() && response.body() != null) {
+                    String body = response.body().string();
+                    JSONObject obj = new JSONObject(body);
+                    JSONArray tripsArray = obj.getJSONArray("trips");
+
+                    Voyage tempVoyage = new Voyage();
+                    Voyage.Trip[] nouveauxTrips = new Voyage.Trip[tripsArray.length()];
+
+                    for (int i = 0; i < tripsArray.length(); i++) {
+                        JSONObject tripObj = tripsArray.getJSONObject(i);
+                        nouveauxTrips[i] = tempVoyage.new Trip(
+                                tripObj.getString("date"),
+                                tripObj.getInt("nb_places_disponibles")
+                        );
+                    }
+                    runOnUiThread(() -> {
+                        this.trips = nouveauxTrips;
+                        updatePlaces(trips[dateSpinner.getSelectedItemPosition()].nb_places_disponibles);
+                    });
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+
 }

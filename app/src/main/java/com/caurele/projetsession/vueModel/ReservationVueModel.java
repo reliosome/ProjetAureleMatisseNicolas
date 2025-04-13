@@ -22,8 +22,17 @@ import com.caurele.projetsession.model.DAO.UtilitaireJSON;
 import com.caurele.projetsession.model.DAO.VoyageDAO;
 import com.caurele.projetsession.model.ReservationsBD;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class ReservationVueModel extends ViewModel {
     private MutableLiveData<List<Reservation>> reservations = new MutableLiveData<>();
@@ -96,11 +105,55 @@ public class ReservationVueModel extends ViewModel {
     public void annulerReservation(int idReservation){
         new Thread(() -> {
             SQLiteDatabase db = reservationsBD.getWritableDatabase();
-            ContentValues valeurs = new ContentValues();
-            valeurs.put(ReservationsBD.CONFIRME, 0);
-            db.updateWithOnConflict(ReservationsBD.RESERVATION, valeurs,
-                    ReservationsBD.ID + "=?",
-                    new String[]{String.valueOf(idReservation)}, SQLiteDatabase.CONFLICT_NONE);
+            Cursor c = db.rawQuery("SELECT " + NBPLACES + ", " + FKVOYAGE + " FROM " + RESERVATION + " WHERE " + ID + " = ?", new String[]{String.valueOf(idReservation)});
+            if (c.moveToFirst()) {
+                int nbPlaces = c.getInt(0);
+                int idVoyage = c.getInt(1);
+
+                ContentValues valeurs = new ContentValues();
+                valeurs.put(ReservationsBD.CONFIRME, 0);
+                db.updateWithOnConflict(ReservationsBD.RESERVATION, valeurs,
+                        ReservationsBD.ID + "=?",
+                        new String[]{String.valueOf(idReservation)}, SQLiteDatabase.CONFLICT_NONE);
+
+                OkHttpClient client = new OkHttpClient();
+
+                Request getRequest = new Request.Builder()
+                        .url("http://10.0.2.2:3000/voyages/" + idVoyage)
+                        .build();
+
+                try (Response response = client.newCall(getRequest).execute()) {
+                    if (response.isSuccessful() && response.body() != null) {
+                        String body = response.body().string();
+                        JSONObject voyageJson = new JSONObject(body);
+                        JSONArray tripsArray = voyageJson.getJSONArray("trips");
+
+
+                        JSONObject trip = tripsArray.getJSONObject(0);
+                        int nbActuel = trip.getInt("nb_places_disponibles");
+                        trip.put("nb_places_disponibles", nbActuel + nbPlaces);
+
+
+                        JSONObject patchObject = new JSONObject();
+                        patchObject.put("trips", tripsArray);
+
+                        RequestBody patchBody = RequestBody.create(
+                                patchObject.toString(),
+                                MediaType.parse("application/json")
+                        );
+
+                        Request patchRequest = new Request.Builder()
+                                .url("http://10.0.2.2:3000/voyages/" + idVoyage)
+                                .patch(patchBody)
+                                .build();
+
+                        client.newCall(patchRequest).execute();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+                c.close();
             db.close();
         }).start();
     }

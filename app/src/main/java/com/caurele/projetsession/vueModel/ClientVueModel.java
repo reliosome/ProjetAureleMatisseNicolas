@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ClientVueModel extends ViewModel {
 
+    public static int idClientActuel;
     public ClientVueModel(){}
 
     public boolean connexion(String txtCourriel, String txtMotPasse){
@@ -28,16 +29,18 @@ public class ClientVueModel extends ViewModel {
 
         Client user = null;
 
-        for(int i=0; i< lesClients.length; i++){
-            if(lesClients[i].existe(courriel)){
-                user = lesClients[i];
+        for (Client lesClient : lesClients) {
+            if (lesClient.existe(courriel)) {
+                user = lesClient;
             }
         }
 
         if(user != null){
-            return user.getMdp().equals(motPasse);
+            if(user.getMdp().equals(motPasse)){
+                idClientActuel = user.getId();
+                return true;
+            }
         }
-
         return false;
     }
 

@@ -132,9 +132,9 @@ public class UtilitaireJSON {
         }
     }
 
-    public List<Voyage> rechercherVoyages(Context context, String destination, String type,
+    public List<Voyage> rechercherVoyages(String destination, String type,
                                           String date, Double prixMax){
-        List<Voyage> voyages = lireVoyagesDepuisJson(context);
+        List<Voyage> voyages = lireVoyagesDepuisJson();
         List<Voyage> resultats = new ArrayList<>();
 
         for (Voyage v : voyages) {
@@ -165,8 +165,8 @@ public class UtilitaireJSON {
         return resultats;
     }
 
-    public Voyage chercherVoyageParId(Context context, int idVoyage) {
-        List<Voyage> voyages = lireVoyagesDepuisJson(context);
+    public Voyage chercherVoyageParId(int idVoyage) {
+        List<Voyage> voyages = lireVoyagesDepuisJson();
         Voyage resultat = null;
 
         for (Voyage v : voyages) {
@@ -179,58 +179,49 @@ public class UtilitaireJSON {
         return resultat;
     }
 
-    private List<Voyage> lireVoyagesDepuisJson(Context context) {
+    private List<Voyage> lireVoyagesDepuisJson() {
         List<Voyage> voyages = new ArrayList<>();
+        (new Thread(()->{
+            try {
 
-        try {
-            /*
-            InputStream is = context.getAssets().open("voyages.json");
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
+                String json = getVoyages();
 
-            String json = new String(buffer, StandardCharsets.UTF_8);
-            */
-            String json = getVoyages();
+                JSONArray voyageArray = new JSONArray(json);
 
-            //JSONObject root = new JSONObject(json);
+                for (int i = 0; i < voyageArray.length(); i++) {
+                    JSONObject obj = voyageArray.getJSONObject(i);
+                    Voyage voyage = new Voyage();
 
-            //JSONArray voyageArray = root.getJSONArray("voyages");
-            JSONArray voyageArray = new JSONArray(json);
+                    voyage.setId_voyage(Integer.parseInt(obj.getString("id")));
+                    voyage.setNom_voyage(obj.getString("nom_voyage"));
+                    voyage.setDescription(obj.getString("description"));
+                    voyage.setPrix(obj.getDouble("prix"));
+                    voyage.setDestination(obj.getString("destination"));
+                    voyage.setImage_url(obj.getString("image_url"));
+                    voyage.setDuree_jours(obj.getInt("duree_jours"));
+                    voyage.setType_de_voyage(obj.getString("type_de_voyage"));
+                    voyage.setActivites_incluses(obj.getString("activites_incluses"));
 
-            for (int i = 0; i < voyageArray.length(); i++) {
-                JSONObject obj = voyageArray.getJSONObject(i);
-                Voyage voyage = new Voyage();
+                    JSONArray tripsArray = obj.getJSONArray("trips");
+                    Voyage.Trip[] trips = new Voyage.Trip[tripsArray.length()];
+                    for (int j = 0; j < tripsArray.length(); j++) {
+                        JSONObject tripObj = tripsArray.getJSONObject(j);
+                        Voyage.Trip trip = new Voyage().new Trip(
+                                tripObj.getString("date"),
+                                tripObj.getInt("nb_places_disponibles")
+                        );
+                        trips[j] = trip;
+                    }
 
-                voyage.setId_voyage(Integer.parseInt(obj.getString("id")));
-                voyage.setNom_voyage(obj.getString("nom_voyage"));
-                voyage.setDescription(obj.getString("description"));
-                voyage.setPrix(obj.getDouble("prix"));
-                voyage.setDestination(obj.getString("destination"));
-                voyage.setImage_url(obj.getString("image_url"));
-                voyage.setDuree_jours(obj.getInt("duree_jours"));
-                voyage.setType_de_voyage(obj.getString("type_de_voyage"));
-                voyage.setActivites_incluses(obj.getString("activites_incluses"));
-
-                JSONArray tripsArray = obj.getJSONArray("trips");
-                Voyage.Trip[] trips = new Voyage.Trip[tripsArray.length()];
-                for (int j = 0; j < tripsArray.length(); j++) {
-                    JSONObject tripObj = tripsArray.getJSONObject(j);
-                    Voyage.Trip trip = new Voyage().new Trip(
-                            tripObj.getString("date"),
-                            tripObj.getInt("nb_places_disponibles")
-                    );
-                    trips[j] = trip;
+                    voyage.setTrips(trips);
+                    voyages.add(voyage);
                 }
 
-                voyage.setTrips(trips);
-                voyages.add(voyage);
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
             }
 
-        } catch (JSONException e) {
-            throw new RuntimeException(e);
-        }
+        })).start();
 
         return voyages;
     }

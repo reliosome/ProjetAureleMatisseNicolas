@@ -10,12 +10,12 @@ import java.util.List;
 
 public class VoyageDAO {
 
-    public static List<Voyage> rechercherVoyages(Context context, String destination, String type,
+    public static List<Voyage> rechercherVoyages(String destination, String type,
                                                  String date, Double prixMax) {
-        return new UtilitaireJSON().rechercherVoyages(context, destination, type, date, prixMax);
+        return new UtilitaireJSON().rechercherVoyages(destination, type, date, prixMax);
     }
 
-    public static Voyage chercherVoyageParId(Context context, int idVoyage)  {
-        return new UtilitaireJSON().chercherVoyageParId(context, idVoyage);
+    public static Voyage chercherVoyageParId(int idVoyage)  {
+        return new UtilitaireJSON().chercherVoyageParId(idVoyage);
     }
 }

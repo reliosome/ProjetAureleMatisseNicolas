@@ -6,20 +6,38 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
+
 import com.caurele.projetsession.R;
 
+import com.caurele.projetsession.vue.HistoriqueActivity;
 import com.caurele.projetsession.vueModel.Reservation;
 import com.caurele.projetsession.model.DAO.VoyageDAO;
 import com.caurele.projetsession.vueModel.Voyage;
+import com.caurele.projetsession.vueModel.VoyageVueModel;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class ReservationAdapter extends ArrayAdapter<Reservation> {
 
     private final Activity context;
+    private List<Reservation> reservations = new ArrayList<>();
+    private Voyage voyage;
 
     public ReservationAdapter(Activity context, List<Reservation> reservations) {
         super(context, R.layout.item_reservation, reservations);
         this.context = context;
+    }
+
+    public void setReservations(List<Reservation> rese) {
+        this.reservations = rese;
+        clear();
+        addAll(rese);
+        notifyDataSetChanged();
     }
 
     public View getView(int position, View view, ViewGroup parent) {
@@ -33,10 +51,8 @@ public class ReservationAdapter extends ArrayAdapter<Reservation> {
         TextView montantPaye = view.findViewById(R.id.montantPayeReservation);
         TextView statut = view.findViewById(R.id.statutReservation);
 
-
-        Voyage voyage = VoyageDAO.chercherVoyageParId(context, reservation.getFkIdVoyage());
-        destination.setText(voyage.getDestination());
-
+        Voyage voy = VoyageDAO.chercherVoyageParId(reservation.getFkIdVoyage());
+        destination.setText(voy.getDestination());
 
         dateVoyage.setText("Places : " + reservation.getNbPlaces());
 

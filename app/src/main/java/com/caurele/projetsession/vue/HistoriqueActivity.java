@@ -21,7 +21,6 @@ import android.widget.Toast;
 import com.caurele.projetsession.R;
 import com.caurele.projetsession.vue.adaptateur.ReservationAdapter;
 import com.caurele.projetsession.vueModel.Reservation;
-import com.caurele.projetsession.vueModel.ReservationRepository;
 import com.caurele.projetsession.vueModel.ReservationVueModel;
 
 import java.util.ArrayList;
@@ -32,7 +31,6 @@ public class HistoriqueActivity extends AppCompatActivity {
     private ReservationAdapter adapter;
     private ReservationVueModel reservationVueModel;
 
-    private int idClientActuel = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,20 +75,36 @@ public class HistoriqueActivity extends AppCompatActivity {
     }
 
     private void chargerReservations() {
-        ArrayList<Reservation> reservations = reservationVueModel.getReservations(idClientActuel);
 
-        if (reservations != null && !reservations.isEmpty()) {
+        new Thread(()->{
+            reservationVueModel.obtenirReservations(1);//ClientVueModel.idClientActuel);
+        }).start();
+
+        reservationVueModel.getReservations().observe(this, reservations -> {
             if (adapter == null) {
                 adapter = new ReservationAdapter(this, reservations);
                 listViewReservations.setAdapter(adapter);
             } else {
                 adapter.clear();
-                adapter.addAll(reservations);
+                adapter.setReservations(reservations);
                 adapter.notifyDataSetChanged();
             }
-        } else {
-            Toast.makeText(this, "Aucune reservation trouvee", Toast.LENGTH_SHORT).show();
-            listViewReservations.setAdapter(null);
-        }
+        });
+
+        //ArrayList<Reservation> reservations = reservationVueModel.getReservations();
+
+//        if (reservations != null && !reservations.isEmpty()) {
+//            if (adapter == null) {
+//                adapter = new ReservationAdapter(this, reservations);
+//                listViewReservations.setAdapter(adapter);
+//            } else {
+//                adapter.clear();
+//                adapter.addAll(reservations);
+//                adapter.notifyDataSetChanged();
+//            }
+//        } else {
+//            Toast.makeText(this, "Aucune reservation trouvee", Toast.LENGTH_SHORT).show();
+//            listViewReservations.setAdapter(null);
+//        }
     }
 }

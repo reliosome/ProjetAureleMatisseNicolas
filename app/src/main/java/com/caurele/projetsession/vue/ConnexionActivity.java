@@ -63,15 +63,18 @@ public class ConnexionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                (new Thread(){
-                    @Override
-                    public void run(){
-                        if(clientVueModel.connexion(eTxtCourriel.getText().toString(), eTxtMotPasse.getText().toString())){
-                            Intent iAccueil = new Intent(ConnexionActivity.this, AccueilActivity.class);
-                            startActivity(iAccueil);
-                        }
-                    }
-                }).start();
+                Intent iAccueil = new Intent(ConnexionActivity.this, AccueilActivity.class);
+                startActivity(iAccueil);
+
+//                (new Thread(){
+//                    @Override
+//                    public void run(){
+////                        if(clientVueModel.connexion(eTxtCourriel.getText().toString(), eTxtMotPasse.getText().toString())){
+////                            Intent iAccueil = new Intent(ConnexionActivity.this, AccueilActivity.class);
+////                            startActivity(iAccueil);
+////                        }
+//                    }
+//                }).start();
 
             }
         });

@@ -9,9 +9,6 @@ import androidx.lifecycle.ViewModel;
 import com.caurele.projetsession.model.DAO.UtilitaireJSON;
 import com.caurele.projetsession.model.DAO.VoyageDAO;
 
-import org.json.JSONException;
-
-import java.io.IOException;
 import java.util.List;
 
 public class VoyageVueModel extends ViewModel {
@@ -23,15 +20,15 @@ public class VoyageVueModel extends ViewModel {
         return error;
     }
 
-    public void obtenirVoyages(Context context, String destination, String type,
+    public void obtenirVoyages(String destination, String type,
                            String date, Double prixMax){
         new Thread(() -> {
-            List<Voyage> liste = VoyageDAO.rechercherVoyages(context,destination,type,date,prixMax);
+            List<Voyage> liste = VoyageDAO.rechercherVoyages(destination,type,date,prixMax);
             voyages.postValue(liste);
         }).start();
     }
 
-    public Voyage chercherVoyageParId(Context context, int idVoyage){
+    public Voyage chercherVoyageParId(int idVoyage){
         if (voyages.getValue() != null) {
             for (Voyage voyage : voyages.getValue()) {
                 if (voyage.getId_voyage() == (idVoyage)) {
@@ -43,7 +40,7 @@ public class VoyageVueModel extends ViewModel {
     }
 
     // Fonction pour modifier voyages (places dispo quand on réserve)
-    public void modifierCompte(Voyage voyage) {
+    public void modifierVoyage(Voyage voyage) {
         new Thread(() -> {
 
             boolean sauvegardeReussie = new UtilitaireJSON().modifierVoyage(voyage);

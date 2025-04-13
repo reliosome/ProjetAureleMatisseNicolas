@@ -15,7 +15,7 @@ public class ReservationsBD extends SQLiteOpenHelper {
     public static final String PRIX = "prix";
     public static final String CONFIRME = "confirme";
     public ReservationsBD(Context context) {
-        super(context, "ReservationsBD", null, 1);
+        super(context, "ReservationsBD", null, 2);
     }
 
     @Override

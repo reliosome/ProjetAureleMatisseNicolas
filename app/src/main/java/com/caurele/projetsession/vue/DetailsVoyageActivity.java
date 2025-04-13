@@ -9,9 +9,7 @@ import com.caurele.projetsession.R;
 import com.caurele.projetsession.vueModel.ReservationVueModel;
 import com.caurele.projetsession.vueModel.Voyage;
 
-import com.caurele.projetsession.vue.adaptateur.ReservationAdapter;
-import com.caurele.projetsession.vueModel.Reservation;
-import com.caurele.projetsession.vueModel.ReservationRepository;
+import com.caurele.projetsession.vueModel.VoyageVueModel;
 
 public class DetailsVoyageActivity extends AppCompatActivity {
 
@@ -23,6 +21,7 @@ public class DetailsVoyageActivity extends AppCompatActivity {
 
     private Voyage voyage;
     private Voyage.Trip[] trips;
+    private VoyageVueModel voyageVueModel;
     private ReservationVueModel reservationVueModel;
 
     @Override
@@ -103,10 +102,11 @@ public class DetailsVoyageActivity extends AppCompatActivity {
                 updatePlaces(placesRestantes - nbDemandes);
                 trips[selectedIndex].nb_places_disponibles -= nbDemandes;
 
-
-                reservationVueModel.saveReservation(nbDemandes, voyage.getId_voyage(), 1); // 1 = client actuel (à adapter)
+                reservationVueModel.saveReservation(nbDemandes, voyage.getId_voyage(), 1);//ClientVueModel.idClientActuel);
 
                 Toast.makeText(this, "Reservation confirmee", Toast.LENGTH_SHORT).show();
+
+                finish();
             }
         });
 
@@ -119,4 +119,4 @@ public class DetailsVoyageActivity extends AppCompatActivity {
         prixTotal.setText("");
         reserver.setEnabled(nbPlaces > 0);
     }
-    }
+}

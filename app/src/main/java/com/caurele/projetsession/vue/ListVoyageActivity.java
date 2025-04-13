@@ -98,6 +98,6 @@ public class ListVoyageActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        voyageVueModel.obtenirVoyages(this, destination, type, date, prixMax);
+        voyageVueModel.obtenirVoyages(destination, type, date, prixMax);
     }
 }

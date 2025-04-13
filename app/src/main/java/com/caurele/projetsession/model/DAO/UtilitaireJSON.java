@@ -121,7 +121,7 @@ public class UtilitaireJSON {
 
         RequestBody corps = RequestBody.create(voyageJSON, JSON);
 
-        Request requete = new Request.Builder().url(URL_POINT_ENTREE+CLIENTS)
+        Request requete = new Request.Builder().url(URL_POINT_ENTREE+VOYAGES+"/"+voyageModif.getId_voyage())
                 .put(corps)
                 .build();
         try {

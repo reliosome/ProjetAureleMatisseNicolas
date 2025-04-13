@@ -56,10 +56,7 @@ public class HistoriqueActivity extends AppCompatActivity {
         historiqueViewModel = new ViewModelProvider(this).get(HistoriqueViewModel.class);
         reservationVueModel = new ReservationVueModel(this);
 
-
-        reservationVueModel = new ReservationVueModel(this);
         chargerReservations();
-
 
         listViewReservations.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

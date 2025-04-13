@@ -19,6 +19,14 @@ public class Voyage implements Serializable {
             this.date = date;
             this.nb_places_disponibles = nb_places_disponibles;
         }
+
+        @Override
+        public String toString() {
+            return "{" +
+                    "\"date\":\"" + date + "\"" +
+                    ", \"nb_places_disponibles\":" + nb_places_disponibles +
+                    '}';
+        }
     }
     private Trip[] trips;
     private String type_de_voyage;
@@ -122,17 +130,17 @@ public class Voyage implements Serializable {
 
     @Override
     public String toString() {
-        return "Voyage{" +
-                "id_voyage=" + id_voyage +
-                ", nom_voyage='" + nom_voyage + '\'' +
-                ", description='" + description + '\'' +
-                ", prix=" + prix +
-                ", destination='" + destination + '\'' +
-                ", image_url='" + image_url + '\'' +
-                ", duree_jours=" + duree_jours +
-                ", trips=" + Arrays.toString(trips) +
-                ", type_de_voyage='" + type_de_voyage + '\'' +
-                ", activites_incluses='" + activites_incluses + '\'' +
+        return "{" +
+                "\"id_voyage\":\"" + id_voyage + '\"' +
+                ", \"nom_voyage\":\"" + nom_voyage + '\"' +
+                ", \"description\":\"" + description + '\"' +
+                ", \"prix\":" + prix +
+                ", \"destination\":\"" + destination + '\"' +
+                ", \"image_url\":\"" + image_url + '\"' +
+                ", \"duree_jours\":" + duree_jours +
+                ", \"trips\":" + Arrays.toString(trips) +
+                ", \"type_de_voyage\":\"" + type_de_voyage + '\"' +
+                ", \"activites_incluses\":\"" + activites_incluses + '\"' +
                 '}';
     }
 }

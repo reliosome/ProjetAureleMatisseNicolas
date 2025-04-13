@@ -112,7 +112,8 @@ public class DetailsVoyageActivity extends AppCompatActivity {
                 Voyage voyageUpdated = new Voyage(voyage.getId_voyage(), voyage.getNom_voyage(),
                         voyage.getDescription(), voyage.getPrix(),
                         voyage.getDestination(), voyage.getImage_url(), voyage.getDuree_jours(),
-                        trips, voyage.getType_de_voyage(),
+                        trips, // Tout demeure pareil sauf le nb de place dans le trip spécifique
+                        voyage.getType_de_voyage(),
                         voyage.getActivites_incluses());
 
                 voyageVueModel.modifierVoyage(voyageUpdated);

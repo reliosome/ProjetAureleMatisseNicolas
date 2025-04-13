@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.caurele.projetsession.R;
 import com.caurele.projetsession.vueModel.ClientVueModel;
@@ -46,6 +47,7 @@ public class DetailsVoyageActivity extends AppCompatActivity {
         voyage = (Voyage) getIntent().getSerializableExtra("voyage");
 
         reservationVueModel = new ReservationVueModel(this);
+        voyageVueModel = new ViewModelProvider(this).get(VoyageVueModel.class);
 
         if (voyage == null) return;
 
@@ -101,9 +103,19 @@ public class DetailsVoyageActivity extends AppCompatActivity {
                 double total = voyage.getPrix() * nbDemandes;
                 prixTotal.setText("Prix total : " + String.format("%.2f $", total));
                 updatePlaces(placesRestantes - nbDemandes);
+
+                // Mets à jour le nombre de places
                 trips[selectedIndex].nb_places_disponibles -= nbDemandes;
 
                 reservationVueModel.saveReservation(nbDemandes, voyage.getId_voyage(), ClientVueModel.idClientActuel);
+
+                Voyage voyageUpdated = new Voyage(voyage.getId_voyage(), voyage.getNom_voyage(),
+                        voyage.getDescription(), voyage.getPrix(),
+                        voyage.getDestination(), voyage.getImage_url(), voyage.getDuree_jours(),
+                        trips, voyage.getType_de_voyage(),
+                        voyage.getActivites_incluses());
+
+                voyageVueModel.modifierVoyage(voyageUpdated);
 
                 Toast.makeText(this, "Reservation confirmee", Toast.LENGTH_SHORT).show();
 

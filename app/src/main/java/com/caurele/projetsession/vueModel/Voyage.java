@@ -1,6 +1,7 @@
 package com.caurele.projetsession.vueModel;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public class Voyage implements Serializable {
     private int id_voyage;
@@ -117,5 +118,21 @@ public class Voyage implements Serializable {
 
     public void setActivites_incluses(String activites_incluses) {
         this.activites_incluses = activites_incluses;
+    }
+
+    @Override
+    public String toString() {
+        return "Voyage{" +
+                "id_voyage=" + id_voyage +
+                ", nom_voyage='" + nom_voyage + '\'' +
+                ", description='" + description + '\'' +
+                ", prix=" + prix +
+                ", destination='" + destination + '\'' +
+                ", image_url='" + image_url + '\'' +
+                ", duree_jours=" + duree_jours +
+                ", trips=" + Arrays.toString(trips) +
+                ", type_de_voyage='" + type_de_voyage + '\'' +
+                ", activites_incluses='" + activites_incluses + '\'' +
+                '}';
     }
 }

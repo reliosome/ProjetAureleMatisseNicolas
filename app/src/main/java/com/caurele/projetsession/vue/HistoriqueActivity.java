@@ -25,6 +25,8 @@ import com.caurele.projetsession.vueModel.ClientVueModel;
 import com.caurele.projetsession.vueModel.HistoriqueViewModel;
 import com.caurele.projetsession.vueModel.Reservation;
 import com.caurele.projetsession.vueModel.ReservationVueModel;
+import com.caurele.projetsession.vueModel.ReservationVoyage;
+import com.caurele.projetsession.vueModel.Voyage;
 
 import java.util.ArrayList;
 
@@ -59,7 +61,9 @@ public class HistoriqueActivity extends AppCompatActivity {
         listViewReservations.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Reservation reservation = (Reservation) adapter.getItem(position);
+                ReservationVoyage rv = (ReservationVoyage) parent.getItemAtPosition(position);
+                Reservation reservation = rv.reservation;
+                Voyage voyage = rv.voyage;
 
                 if (reservation.isConfirme() == 1) {
                     new AlertDialog.Builder(HistoriqueActivity.this)

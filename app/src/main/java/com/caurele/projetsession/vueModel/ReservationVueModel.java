@@ -17,7 +17,5 @@ public class ReservationVueModel extends ViewModel {
 
     // Fonctions pour sauvegarder et charger les réservations
 
-    // Fonction pour modifier voyages (places dispo quand on réserve)
-
 
 }

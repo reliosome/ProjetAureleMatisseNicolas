@@ -87,9 +87,9 @@ public class ReservationRepository {
         SQLiteDatabase db = reservationsBD.getWritableDatabase();
         ContentValues valeurs = new ContentValues();
         valeurs.put(ReservationsBD.CONFIRME, 0);
-        db.update(ReservationsBD.RESERVATION, valeurs,
+        db.updateWithOnConflict(ReservationsBD.RESERVATION, valeurs,
                 ReservationsBD.ID + "=?",
-                new String[]{String.valueOf(idReservation)});
+                new String[]{String.valueOf(idReservation)}, SQLiteDatabase.CONFLICT_NONE);
         db.close();
     }
 

@@ -20,7 +20,7 @@ public class ReservationsBD extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String requete = String.format("create table %s (%s int primary key, %s int, %s int, %s int, %s double, %s int)",
+        String requete = String.format("create table %s (%s integer primary key autoincrement, %s integer, %s integer, %s integer, %s double, %s integer)",
                 RESERVATION,
                 ID,
                 NBPLACES,

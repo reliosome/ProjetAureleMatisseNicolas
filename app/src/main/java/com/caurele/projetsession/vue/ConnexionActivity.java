@@ -8,6 +8,7 @@
 package com.caurele.projetsession.vue;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +22,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.caurele.projetsession.R;
+import com.caurele.projetsession.model.ReservationsBD;
 import com.caurele.projetsession.vueModel.ClientVueModel;
 
 public class ConnexionActivity extends AppCompatActivity {

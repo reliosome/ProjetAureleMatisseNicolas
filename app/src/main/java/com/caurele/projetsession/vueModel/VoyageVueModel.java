@@ -1,13 +1,58 @@
 package com.caurele.projetsession.vueModel;
 
+import android.content.Context;
+
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.caurele.projetsession.model.DAO.UtilitaireJSON;
+import com.caurele.projetsession.model.DAO.VoyageDAO;
+
+import org.json.JSONException;
+
+import java.io.IOException;
+import java.util.List;
+
 public class VoyageVueModel extends ViewModel {
-    private LiveData<Voyage> voyages;
+    private MutableLiveData<List<Voyage>> voyages = new MutableLiveData<>();
+    private MutableLiveData<String> error = new MutableLiveData<>();
 
+    public LiveData<List<Voyage>> getVoyages(){return voyages;}
+    public LiveData<String> getError() {
+        return error;
+    }
 
+    public void obtenirVoyages(Context context, String destination, String type,
+                           String date, Double prixMax){
+        new Thread(() -> {
+            List<Voyage> liste = VoyageDAO.rechercherVoyages(context,destination,type,date,prixMax);
+            voyages.postValue(liste);
+        }).start();
+    }
+
+    public Voyage chercherVoyageParId(Context context, int idVoyage){
+        if (voyages.getValue() != null) {
+            for (Voyage voyage : voyages.getValue()) {
+                if (voyage.getId_voyage() == (idVoyage)) {
+                    return voyage;
+                }
+            }
+        }
+        return null;
+    }
 
     // Fonction pour modifier voyages (places dispo quand on réserve)
+    public void modifierCompte(Voyage voyage) {
+        new Thread(() -> {
 
+            boolean sauvegardeReussie = new UtilitaireJSON().modifierVoyage(voyage);
+            if (sauvegardeReussie) {
+                // code ici
+                // Optionnel : mettre à jour la liste des voyages si nécessaire.
+            } else {
+                // code ici
+            }
+        }).start();
+    }
 }

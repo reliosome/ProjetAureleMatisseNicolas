@@ -6,6 +6,7 @@ import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.caurele.projetsession.R;
+import com.caurele.projetsession.vueModel.ClientVueModel;
 import com.caurele.projetsession.vueModel.ReservationVueModel;
 import com.caurele.projetsession.vueModel.Voyage;
 
@@ -102,7 +103,7 @@ public class DetailsVoyageActivity extends AppCompatActivity {
                 updatePlaces(placesRestantes - nbDemandes);
                 trips[selectedIndex].nb_places_disponibles -= nbDemandes;
 
-                reservationVueModel.saveReservation(nbDemandes, voyage.getId_voyage(), 1);//ClientVueModel.idClientActuel);
+                reservationVueModel.saveReservation(nbDemandes, voyage.getId_voyage(), ClientVueModel.idClientActuel);
 
                 Toast.makeText(this, "Reservation confirmee", Toast.LENGTH_SHORT).show();
 

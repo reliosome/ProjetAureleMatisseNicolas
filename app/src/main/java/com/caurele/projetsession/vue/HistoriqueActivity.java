@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 
 import android.view.View;
@@ -20,6 +21,8 @@ import android.widget.Toast;
 
 import com.caurele.projetsession.R;
 import com.caurele.projetsession.vue.adaptateur.ReservationAdapter;
+import com.caurele.projetsession.vueModel.ClientVueModel;
+import com.caurele.projetsession.vueModel.HistoriqueViewModel;
 import com.caurele.projetsession.vueModel.Reservation;
 import com.caurele.projetsession.vueModel.ReservationVueModel;
 
@@ -30,6 +33,7 @@ public class HistoriqueActivity extends AppCompatActivity {
     private ListView listViewReservations;
     private ReservationAdapter adapter;
     private ReservationVueModel reservationVueModel;
+    private HistoriqueViewModel historiqueViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,14 +42,24 @@ public class HistoriqueActivity extends AppCompatActivity {
         setContentView(R.layout.activity_historique);
 
         listViewReservations = findViewById(R.id.listViewReservations);
+        adapter = new ReservationAdapter(this, new ArrayList<>());
+        listViewReservations.setAdapter(adapter);
 
+        historiqueViewModel = new ViewModelProvider(this).get(HistoriqueViewModel.class);
+        historiqueViewModel.getReservations().observe(this, reservations -> {
+            adapter.setData(reservations);
+        });
+
+        historiqueViewModel.chargerReservations(this);
+        /*
         reservationVueModel = new ReservationVueModel(this);
         chargerReservations();
+         */
 
         listViewReservations.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Reservation reservation = adapter.getItem(position);
+                Reservation reservation = (Reservation) adapter.getItem(position);
 
                 if (reservation.isConfirme() == 1) {
                     new AlertDialog.Builder(HistoriqueActivity.this)
@@ -64,6 +78,8 @@ public class HistoriqueActivity extends AppCompatActivity {
             }
         });
 
+
+
         Button btnRetour = findViewById(R.id.btnRetourHistorique);
         btnRetour.setOnClickListener(v -> finish());
 
@@ -76,20 +92,20 @@ public class HistoriqueActivity extends AppCompatActivity {
 
     private void chargerReservations() {
 
-        new Thread(()->{
-            reservationVueModel.obtenirReservations(1);//ClientVueModel.idClientActuel);
-        }).start();
+            historiqueViewModel.getReservations().observe(this, reservations -> {
+                if (adapter == null) {
 
-        reservationVueModel.getReservations().observe(this, reservations -> {
-            if (adapter == null) {
-                adapter = new ReservationAdapter(this, reservations);
-                listViewReservations.setAdapter(adapter);
-            } else {
-                adapter.clear();
-                adapter.setReservations(reservations);
-                adapter.notifyDataSetChanged();
-            }
-        });
+                    adapter = new ReservationAdapter(this, reservations);
+
+                    listViewReservations.setAdapter(adapter);
+                } else {
+                    adapter.setData(reservations);
+                    adapter.notifyDataSetChanged();
+                }
+            });
+
+
+
 
         //ArrayList<Reservation> reservations = reservationVueModel.getReservations();
 
@@ -107,4 +123,5 @@ public class HistoriqueActivity extends AppCompatActivity {
 //            listViewReservations.setAdapter(null);
 //        }
     }
+
 }

@@ -166,22 +166,25 @@ public class UtilitaireJSON {
     }
 
     public Voyage chercherVoyageParId(int idVoyage) {
-        List<Voyage> voyages = lireVoyagesDepuisJson();
+
         Voyage resultat = null;
 
-        for (Voyage v : voyages) {
-            if(v.getId_voyage() == (idVoyage)){
-                resultat = v;
-                break;
+            List<Voyage> voyages = lireVoyagesDepuisJson();
+
+            for (Voyage v : voyages) {
+                if(v.getId_voyage() == (idVoyage)){
+                    resultat = v;
+                    break;
+                }
             }
-        }
+
 
         return resultat;
     }
 
     private List<Voyage> lireVoyagesDepuisJson() {
         List<Voyage> voyages = new ArrayList<>();
-        (new Thread(()->{
+
             try {
 
                 String json = getVoyages();
@@ -221,7 +224,7 @@ public class UtilitaireJSON {
                 throw new RuntimeException(e);
             }
 
-        })).start();
+
 
         return voyages;
     }

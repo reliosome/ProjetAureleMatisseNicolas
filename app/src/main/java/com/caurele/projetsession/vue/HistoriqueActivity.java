@@ -109,24 +109,6 @@ public class HistoriqueActivity extends AppCompatActivity {
                 }
             });
 
-
-
-
-        //ArrayList<Reservation> reservations = reservationVueModel.getReservations();
-
-//        if (reservations != null && !reservations.isEmpty()) {
-//            if (adapter == null) {
-//                adapter = new ReservationAdapter(this, reservations);
-//                listViewReservations.setAdapter(adapter);
-//            } else {
-//                adapter.clear();
-//                adapter.addAll(reservations);
-//                adapter.notifyDataSetChanged();
-//            }
-//        } else {
-//            Toast.makeText(this, "Aucune reservation trouvee", Toast.LENGTH_SHORT).show();
-//            listViewReservations.setAdapter(null);
-//        }
     }
 
 }

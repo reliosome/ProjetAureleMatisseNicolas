@@ -30,13 +30,6 @@ public class Reservation implements Serializable {
         this.id = id;
     }
 
-    public int getNbPlaces() {
-        return nbPlaces;
-    }
-
-    public void setNbPlaces(int nbPlaces) {
-        this.nbPlaces = nbPlaces;
-    }
 
     public double getPrix() {
         return prix;
@@ -50,23 +43,8 @@ public class Reservation implements Serializable {
         return fkIdVoyage;
     }
 
-    public void setFkIdVoyage(int fkIdVoyage) {
-        this.fkIdVoyage = fkIdVoyage;
-    }
-
-    public int getFkIdClient() {
-        return fkIdClient;
-    }
-
-    public void setFkIdClient(int fkIdClient) {
-        this.fkIdClient = fkIdClient;
-    }
-
     public int isConfirme() {
         return confirme;
     }
 
-    public void setConfirme(int confirme) {
-        this.confirme = confirme;
-    }
 }

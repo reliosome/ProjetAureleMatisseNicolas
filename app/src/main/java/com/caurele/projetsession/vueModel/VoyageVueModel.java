@@ -28,28 +28,12 @@ public class VoyageVueModel extends ViewModel {
         }).start();
     }
 
-    public Voyage chercherVoyageParId(int idVoyage){
-        if (voyages.getValue() != null) {
-            for (Voyage voyage : voyages.getValue()) {
-                if (voyage.getId_voyage() == (idVoyage)) {
-                    return voyage;
-                }
-            }
-        }
-        return null;
-    }
-
     // Fonction pour modifier voyages (places dispo quand on réserve)
     public void modifierVoyage(Voyage voyage) {
         new Thread(() -> {
 
-            boolean sauvegardeReussie = new UtilitaireJSON().modifierVoyage(voyage);
-            if (sauvegardeReussie) {
-                // code ici
-                // Optionnel : mettre à jour la liste des voyages si nécessaire.
-            } else {
-                // code ici
-            }
+            new UtilitaireJSON().modifierVoyage(voyage);
+
         }).start();
     }
 }

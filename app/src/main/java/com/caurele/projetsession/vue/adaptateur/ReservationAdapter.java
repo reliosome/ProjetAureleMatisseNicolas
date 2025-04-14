@@ -56,46 +56,5 @@ public class ReservationAdapter extends BaseAdapter {
 
         return view;
     }
-/*
-    private final Activity context;
-    private List<Reservation> reservations = new ArrayList<>();
-    private Voyage voyage;
 
-    public ReservationAdapter(Activity context, List<Reservation> reservations) {
-        super(context, R.layout.item_reservation, reservations);
-        this.context = context;
-    }
-
-    public void setReservations(List<Reservation> rese) {
-        this.reservations = rese;
-        clear();
-        addAll(rese);
-        notifyDataSetChanged();
-    }
-
-    public View getView(int position, View view, ViewGroup parent) {
-        Reservation reservation = getItem(position);
-        if (view == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.item_reservation, parent, false);
-        }
-
-        TextView destination = view.findViewById(R.id.destinationReservation);
-        TextView dateVoyage = view.findViewById(R.id.dateVoyageReservation);
-        TextView montantPaye = view.findViewById(R.id.montantPayeReservation);
-        TextView statut = view.findViewById(R.id.statutReservation);
-
-        //Voyage voy = VoyageDAO.chercherVoyageParId(reservation.getFkIdVoyage());
-        Voyage voy = null;
-        if(voy!=null)
-            destination.setText(voy.getDestination());
-
-        dateVoyage.setText("Places : " + reservation.getNbPlaces());
-
-        montantPaye.setText(String.format("%.2f $", reservation.getPrix()));
-        statut.setText(reservation.isConfirme() == 1 ? "Confirmée" : "Annulée");
-
-        return view;
-    }
-
- */
 }

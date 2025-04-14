@@ -67,40 +67,6 @@ public class ReservationVueModel extends ViewModel {
         }).start();
     }
 
-    // Recuperer depuis BD
-    @SuppressLint("Range")
-    public void obtenirReservations(int idClient){
-        new Thread(()->{
-            List<Reservation> rese = new ArrayList<>();
-
-            SQLiteDatabase db = reservationsBD.getReadableDatabase();
-
-            Cursor c = db.query(RESERVATION,
-                    new String[]{ID, NBPLACES, FKVOYAGE, FKCLIENT, PRIX, CONFIRME},
-                    FKCLIENT + "=?",
-                    new String[]{String.valueOf(idClient)},
-                    null, null, null);
-
-            if (c.moveToFirst()) {
-                do {
-                    rese.add(new Reservation(
-                            c.getInt(c.getColumnIndex(ID)),
-                            c.getInt(c.getColumnIndex(NBPLACES)),
-                            c.getDouble(c.getColumnIndex(PRIX)),
-                            c.getInt(c.getColumnIndex(FKVOYAGE)),
-                            c.getInt(c.getColumnIndex(FKCLIENT)),
-                            c.getInt(c.getColumnIndex(CONFIRME))
-                    ));
-                } while (c.moveToNext());
-            }
-
-            c.close();
-            db.close();
-
-            reservations.postValue(rese);
-        }).start();
-    }
-
     // Annuler une reserve
     public void annulerReservation(int idReservation){
         new Thread(() -> {

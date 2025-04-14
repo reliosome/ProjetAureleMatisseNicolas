@@ -233,4 +233,34 @@ public class UtilitaireJSON {
         String normalized = Normalizer.normalize(input, Normalizer.Form.NFD);
         return normalized.replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
     }
+
+    public static Voyage.Trip[] chargerTripsDepuisServeur(int idVoyage) {
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url("http://10.0.2.2:3000/voyages/" + idVoyage)
+                .build();
+
+        try (Response response = client.newCall(request).execute()) {
+            if (response.isSuccessful() && response.body() != null) {
+                String body = response.body().string();
+                JSONObject obj = new JSONObject(body);
+                JSONArray tripsArray = obj.getJSONArray("trips");
+
+                Voyage tempVoyage = new Voyage();
+                Voyage.Trip[] nouveauxTrips = new Voyage.Trip[tripsArray.length()];
+                for (int i = 0; i < tripsArray.length(); i++) {
+                    JSONObject tripObj = tripsArray.getJSONObject(i);
+                    nouveauxTrips[i] = tempVoyage.new Trip(
+                            tripObj.getString("date"),
+                            tripObj.getInt("nb_places_disponibles")
+                    );
+                }
+
+                return nouveauxTrips;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

@@ -15,7 +15,7 @@ import com.caurele.projetsession.vueModel.VoyageVueModel;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import com.caurele.projetsession.vueModel.Voyage.Trip;
+import com.caurele.projetsession.model.DAO.UtilitaireJSON;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -144,41 +144,21 @@ public class DetailsVoyageActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        rafraichirVoyageDepuisServeur();
+     rafraichirVoyageDepuisServeur();
     }
-
     private void rafraichirVoyageDepuisServeur() {
         new Thread(() -> {
-            OkHttpClient client = new OkHttpClient();
-            Request request = new Request.Builder()
-                    .url("http://10.0.2.2:3000/voyages/" + voyage.getId_voyage())
-                    .build();
+            Voyage.Trip[] nouveauxTrips = UtilitaireJSON.chargerTripsDepuisServeur(voyage.getId_voyage());
 
-            try (Response response = client.newCall(request).execute()) {
-                if (response.isSuccessful() && response.body() != null) {
-                    String body = response.body().string();
-                    JSONObject obj = new JSONObject(body);
-                    JSONArray tripsArray = obj.getJSONArray("trips");
-
-                    Voyage tempVoyage = new Voyage();
-                    Voyage.Trip[] nouveauxTrips = new Voyage.Trip[tripsArray.length()];
-
-                    for (int i = 0; i < tripsArray.length(); i++) {
-                        JSONObject tripObj = tripsArray.getJSONObject(i);
-                        nouveauxTrips[i] = tempVoyage.new Trip(
-                                tripObj.getString("date"),
-                                tripObj.getInt("nb_places_disponibles")
-                        );
-                    }
-                    runOnUiThread(() -> {
-                        this.trips = nouveauxTrips;
-                        updatePlaces(trips[dateSpinner.getSelectedItemPosition()].nb_places_disponibles);
-                    });
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (nouveauxTrips != null) {
+                runOnUiThread(() -> {
+                    this.trips = nouveauxTrips;
+                    updatePlaces(trips[dateSpinner.getSelectedItemPosition()].nb_places_disponibles);
+                });
             }
         }).start();
     }
+
+
 
 }

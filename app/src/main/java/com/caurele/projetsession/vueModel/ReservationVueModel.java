@@ -153,7 +153,7 @@ public class ReservationVueModel extends ViewModel {
                     e.printStackTrace();
                 }
             }
-                c.close();
+            c.close();
             db.close();
         }).start();
     }
